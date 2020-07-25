@@ -69,8 +69,8 @@ class Scene(private val window: GameWindow)  {
 
         diff = Texture2D.invoke("assets/textures/ground_diff.png",true)
         diff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        emit = Texture2D.invoke("assets/textures/ground_emit.png",true)
-        //emit = Texture2D.invoke("assets/street/Texturizer/str.jpg",true)
+        //emit = Texture2D.invoke("assets/textures/ground_emit.png",true)
+        emit = Texture2D.invoke("assets/bus/Texturizer/str.jpg",true)
         emit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
         spec = Texture2D.invoke("assets/textures/ground_spec.png",true)
         spec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
