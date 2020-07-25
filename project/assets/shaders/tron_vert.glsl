@@ -11,7 +11,7 @@ uniform mat4 model_matrix;
 uniform mat4 view_matrix;
 uniform mat4 projection_matrix;
 uniform vec2 tcMultiplier ;
-uniform vec3 spotlight_pos;
+uniform vec3 bikespotlight_pos;
 uniform vec3 bikepointlight_pos;
 out struct VertexData
 {
@@ -40,7 +40,7 @@ void main(){
 
        vertexData.lightdir =(lpos-p).xyz;
 
-       vec4 slpos =vec4(spotlight_pos,1.0f);
+       vec4 slpos =vec4(bikespotlight_pos,1.0f);
        vertexData.lightdirsp = (slpos-p ).xyz;
         // toCamera
        vertexData.viewdir =-p.xyz;

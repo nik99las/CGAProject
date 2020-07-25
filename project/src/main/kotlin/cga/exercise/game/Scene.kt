@@ -42,6 +42,7 @@ class Scene(private val window: GameWindow)  {
     var spotligt :SpotLight
     var olpx :Double
     var oldpy :Double
+    var bus :Renderable
 
 
 
@@ -59,6 +60,8 @@ class Scene(private val window: GameWindow)  {
 
         cycle.scaleLocal(Vector3f(0.8f,0.8f,0.8f))
 
+        bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
 
 
         val res2: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/models/ground.obj")
@@ -134,12 +137,13 @@ class Scene(private val window: GameWindow)  {
         pointlight.bind(staticShader,"bike")
         pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
-        spotligt.bind(staticShader," ", camera.getCalculateViewMatrix())
+        spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
         staticShader.setUniform("shadingcolor",Vector3f(0f,1f,0f))
 
         bodenr.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         cycle.render(staticShader)
+        bus.render(staticShader)
 
 
 

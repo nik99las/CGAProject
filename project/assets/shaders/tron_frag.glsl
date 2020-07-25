@@ -6,12 +6,12 @@ uniform sampler2D specular;
 uniform float shininess;
 
 uniform vec3 bikepointlight_col;
-uniform vec3 spotlight_dir;
-uniform float spot_inner;
-uniform float spot_outer;
-uniform vec3 spotlight_col;
+uniform vec3 bikespotlight_dir;
+uniform float bikespot_inner;
+uniform float bikespot_outer;
+uniform vec3 bikespotlight_col;
 uniform vec3 bikepointlight_attenuation;
-uniform vec3 spotLightAttenuation;
+uniform vec3 bikespotLightAttenuation;
 uniform vec3 shadingcolor;
 
 
@@ -89,7 +89,7 @@ void main(){
     //Intensity
     vec3 intensitypl =  berechnungattentuation(pointlength, bikepointlight_attenuation) *bikepointlight_col;
 
-   vec3 internsitysl = berechnungintensity(toSpotLight, spotlight_dir, spot_outer, spot_inner,spotlength, spotLightAttenuation) *spotlight_col;
+   vec3 internsitysl = berechnungintensity(toSpotLight, bikespotlight_dir, bikespot_outer, bikespot_inner,spotlength, bikespotLightAttenuation) *bikespotlight_col;
 
     //emissive term
     vec3 result = vec3(ambientemit);
