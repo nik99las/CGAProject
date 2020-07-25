@@ -33,7 +33,7 @@ void main(){
        gl_Position = pos;
 
        vertexData.norm =mat3(transpose(inverse(modelview))) * normal;
-       vertexData.tc = texcoords * tcMultiplier;
+       vertexData.tc = texcoords; //* tcMultiplier;
        // toLight
        vec4 lpos = view_matrix * vec4(bikepointlight_pos,1.0f);
        vec4 p = (view_matrix * model_matrix * vec4(position,1.0f));

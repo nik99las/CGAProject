@@ -58,7 +58,7 @@ class Scene(private val window: GameWindow)  {
 
         cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
 
-        cycle.scaleLocal(Vector3f(0.8f,0.8f,0.8f))
+        cycle.scaleLocal(Vector3f(2f,2f,2f))
 
         bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
@@ -70,7 +70,7 @@ class Scene(private val window: GameWindow)  {
         diff = Texture2D.invoke("assets/textures/ground_diff.png",true)
         diff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
         //emit = Texture2D.invoke("assets/textures/ground_emit.png",true)
-        emit = Texture2D.invoke("assets/bus/Texturizer/str.jpg",true)
+        emit = Texture2D.invoke("assets/bus/Texturizer/vier.jpg",true)
         emit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
         spec = Texture2D.invoke("assets/textures/ground_spec.png",true)
         spec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
@@ -88,6 +88,9 @@ class Scene(private val window: GameWindow)  {
 
 
         bodenr = Renderable(mutableListOf(bodenmesh))
+        bodenr.rotateLocal(0f,90f,0f)
+        bodenr.scaleLocal(Vector3f(5f,0.6f,0.5f))
+
         //kugelr = Renderable(mutableListOf(kugelMesh))
 
 
@@ -136,6 +139,9 @@ class Scene(private val window: GameWindow)  {
         camera.bind(staticShader)
 
         pointlight.bind(staticShader,"bike")
+        pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
+
+        pointlight.bind(staticShader,"bus")
         pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
         spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
