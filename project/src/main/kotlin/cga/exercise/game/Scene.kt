@@ -141,11 +141,11 @@ class Scene(private val window: GameWindow)  {
         pointlight.bind(staticShader,"bike")
         pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
-        pointlight.bind(staticShader,"bus")
-        pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
+       // pointlight.bind(staticShader,"bus")
+       // pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
         spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
-        staticShader.setUniform("shadingcolor",Vector3f(0f,1f,0f))
+        staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
         bodenr.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
