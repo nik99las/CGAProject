@@ -48,6 +48,7 @@ class Scene(private val window: GameWindow)  {
 
 
 
+
     //scene setup
     init {
 
@@ -56,12 +57,17 @@ class Scene(private val window: GameWindow)  {
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
 
 
-        cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
         cycle.scaleLocal(Vector3f(2f,2f,2f))
 
+
         bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
+
+        //cycle = ModelLoader.loadModel("assets/E-45-Aircraft/E 45 Aircraft_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+
 
 
         val res2: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/models/ground.obj")
@@ -149,6 +155,7 @@ class Scene(private val window: GameWindow)  {
 
         bodenr.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
+
         cycle.render(staticShader)
         bus.render(staticShader)
 
