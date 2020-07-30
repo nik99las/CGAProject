@@ -58,10 +58,12 @@ class Scene(private val window: GameWindow)  {
 
 
         //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
-        cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-
+        //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         cycle.scaleLocal(Vector3f(2f,2f,2f))
-
+        cycle.translateGlobal(Vector3f(-4.0f,1.0f,0.0f))
 
         bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
@@ -147,14 +149,17 @@ class Scene(private val window: GameWindow)  {
         pointlight.bind(staticShader,"bike")
         pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
-       // pointlight.bind(staticShader,"bus")
-       // pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
+
+
+        pointlight.bind(staticShader,"bus")
+        pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
         spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
         bodenr.render(staticShader)
-        staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
+        //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
+        staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0f))
 
         cycle.render(staticShader)
         bus.render(staticShader)
