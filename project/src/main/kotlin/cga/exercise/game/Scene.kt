@@ -57,14 +57,14 @@ class Scene(private val window: GameWindow)  {
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
 
 
-        //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
+       // cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars3.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+       // cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars3.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         cycle.scaleLocal(Vector3f(2f,2f,2f))
-        cycle.translateGlobal(Vector3f(-4.0f,1.0f,0.0f))
+        cycle.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
         bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
@@ -115,11 +115,11 @@ class Scene(private val window: GameWindow)  {
         camera.parent = cycle
 
 
-        pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
+        pointlight = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
         pointlight.parent = cycle
 
 
-        spotligt = SpotLight(Vector3f(0f,0.5f,0f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
+        spotligt = SpotLight(Vector3f(2f,1f,0f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.parent = cycle
 
 
