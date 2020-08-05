@@ -13,6 +13,12 @@ uniform mat4 projection_matrix;
 uniform vec2 tcMultiplier ;
 uniform vec3 bikespotlight_pos;
 uniform vec3 bikepointlight_pos;
+
+//Bus
+uniform vec3 buspointlight_pos;
+uniform vec3 busspotlight_pos;
+
+
 out struct VertexData
 {
     vec3 norm;
@@ -26,6 +32,7 @@ out struct VertexData
 void main(){
 
 
+
        mat4 modelview = view_matrix * model_matrix;
        vec4 pos = projection_matrix * modelview * vec4(position, 1.0f);
 
@@ -34,6 +41,7 @@ void main(){
 
        vertexData.norm =mat3(transpose(inverse(modelview))) * normal;
        vertexData.tc = texcoords; //* tcMultiplier;
+        //Bike
        // toLight
        vec4 lpos = view_matrix * vec4(bikepointlight_pos,1.0f);
        vec4 p = (view_matrix * model_matrix * vec4(position,1.0f));
@@ -44,6 +52,18 @@ void main(){
        vertexData.lightdirsp = (slpos-p ).xyz;
         // toCamera
        vertexData.viewdir =-p.xyz;
+
+    //Bus
+    // toLight
+    vec4 buslpos = view_matrix * vec4(buspointlight_pos,1.0f);
+    vec4 busp = (view_matrix * model_matrix * vec4(position,1.0f));
+
+    vertexData.lightdir =(lpos-p).xyz;
+
+    vec4 busslpos =vec4(busspotlight_pos,1.0f);
+    vertexData.lightdirsp = (slpos-p ).xyz;
+    // toCamera
+    vertexData.viewdir =-p.xyz;
    }
 
 

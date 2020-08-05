@@ -28,6 +28,7 @@ import kotlin.math.sin
  */
 class Scene(private val window: GameWindow)  {
     private val staticShader: ShaderProgram
+    private val busShader: ShaderProgram
 
 
 
@@ -43,6 +44,10 @@ class Scene(private val window: GameWindow)  {
     var olpx :Double
     var oldpy :Double
     var bus :Renderable
+    var star :Renderable
+    var pointlightstar :PointLight
+    var pointlightbus : PointLight
+
 
 
 
@@ -55,7 +60,7 @@ class Scene(private val window: GameWindow)  {
 
         //staticShader = ShaderProgram("assets/shaders/simple_vert.glsl", "assets/shaders/simple_frag.glsl")
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
-
+        busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
 
        // cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -68,7 +73,11 @@ class Scene(private val window: GameWindow)  {
 
         bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
+        bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
+        star = ModelLoader.loadModel("assets/estrellica.obj", Math.toRadians(90f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        star.translateLocal(Vector3f(0.0f,3.0f,0.0f))
+        star.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
         //cycle = ModelLoader.loadModel("assets/E-45-Aircraft/E 45 Aircraft_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
 
@@ -118,9 +127,15 @@ class Scene(private val window: GameWindow)  {
         pointlight = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
         pointlight.parent = cycle
 
+        pointlightstar = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
+        pointlightstar.parent = star
+
+        pointlightbus = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
+        pointlightstar.parent = bus
 
         spotligt = SpotLight(Vector3f(2f,1f,0f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.parent = cycle
+
 
 
         olpx = window.mousePos.xpos
@@ -152,8 +167,8 @@ class Scene(private val window: GameWindow)  {
 
 
 
-        pointlight.bind(staticShader,"bus")
-        pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
+        pointlightbus.bind(busShader,"bus")
+        pointlightbus.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
         spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
@@ -163,7 +178,8 @@ class Scene(private val window: GameWindow)  {
         //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0f))
 
         cycle.render(staticShader)
-        bus.render(staticShader)
+        bus.render(busShader)
+        star.render(staticShader)
 
 
 

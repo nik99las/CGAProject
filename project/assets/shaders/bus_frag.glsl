@@ -5,14 +5,7 @@ uniform sampler2D emit;
 uniform sampler2D specular;
 uniform float shininess;
 
-//Bike
-uniform vec3 bikepointlight_col;
-uniform vec3 bikespotlight_dir;
-uniform float bikespot_inner;
-uniform float bikespot_outer;
-uniform vec3 bikespotlight_col;
-uniform vec3 bikepointlight_attenuation;
-uniform vec3 bikespotLightAttenuation;
+
 uniform vec3 shadingcolor;
 
 //Bus
@@ -89,26 +82,7 @@ void main(){
     vec3 texdiff = texture(diff, vertexData.tc).rgb;
     vec3 texspec = texture(specular, vertexData.tc).rgb;
 
-    //Bike
 
-    // Emissive + Ambient
-    vec3 ambientemit = berechnungemit(texemit, shadingcolor);
-    // Diffuse +Sepcular
-    vec3 diffspecpl = berechnungdifspec(normale, tolight, tocamera, texdiff, texspec, shininess);
-    vec3 diffspecsl = berechnungdifspec(normale, toSpotLight, tocamera, texdiff, texspec, shininess);
-
-    //Intensity
-    vec3 intensitypl =  berechnungattentuation(pointlength, bikepointlight_attenuation) *bikepointlight_col;
-
-   vec3 internsitysl = berechnungintensity(toSpotLight, bikespotlight_dir, bikespot_outer, bikespot_inner,spotlength, bikespotLightAttenuation) *bikespotlight_col;
-
-    //emissive term
-    vec3 result = vec3(ambientemit);
-    //pointlight
-    result += diffspecpl *intensitypl;
-    //spotlight
-    result += diffspecsl * internsitysl;
-   // result += ambientemit;
 
     //Bus
     // Emissive + Ambient
@@ -123,7 +97,7 @@ void main(){
     vec3 BUSinternsitysl = berechnungintensity(toSpotLight, busspotlight_dir, busspot_outer, busspot_inner,spotlength, busspotlightAttenuation) *busspotlight_col;
 
     //emissive term
-    vec3 BUSresult = vec3(ambientemit);
+    vec3 BUSresult = vec3(BUSambientemit);
     //pointlight
     BUSresult += BUSdiffspecpl * BUSintensitypl;
     //spotlight
@@ -131,8 +105,6 @@ void main(){
     // result += ambientemit;
 
 
-    color = vec4(result, 1.0f);
+    color = vec4(BUSresult, 1.0f);
 
 }
-
-
