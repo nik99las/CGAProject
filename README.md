@@ -1,7 +1,7 @@
 # CGAProject
  
 # Projektname
-Dodge Them all
+Dodge Them All
 
 # Teammitglieder
 Listen Sie hier noch einmal alle Teammitglieder auf.
