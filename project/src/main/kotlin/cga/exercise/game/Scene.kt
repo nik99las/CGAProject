@@ -33,19 +33,24 @@ class Scene(private val window: GameWindow)  {
 
 
     var bodenr :Renderable
+    var sternr :Renderable
     var camera :TronCamera
     var material :Material
     var diff :Texture2D
     var emit :Texture2D
     var spec : Texture2D
+    var starmaterial :Material
+    var stardiff :Texture2D
+    var staremit :Texture2D
+    var starspec : Texture2D
     var cycle: Renderable
     var pointlight :PointLight
     var spotligt :SpotLight
     var olpx :Double
     var oldpy :Double
     var bus :Renderable
-    var star :Renderable
-    var pointlightstar :PointLight
+    //var star :Renderable
+    //var pointlightstar :PointLight
     var pointlightbus : PointLight
 
 
@@ -62,7 +67,7 @@ class Scene(private val window: GameWindow)  {
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
         busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
 
-       // cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
+       //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -75,9 +80,11 @@ class Scene(private val window: GameWindow)  {
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
         bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
-        star = ModelLoader.loadModel("assets/estrellica.obj", Math.toRadians(90f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        star.translateLocal(Vector3f(0.0f,3.0f,0.0f))
-        star.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
+        //star = ModelLoader.loadModel("assets/estrellica.obj", Math.toRadians(90f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        //star.translateLocal(Vector3f(0.0f,3.0f,0.0f))
+       // star = ModelLoader.loadModel("assets/star/stern.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+       // star.translateLocal(Vector3f(6.0f,1.0f,0.0f))
+       // star.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
         //cycle = ModelLoader.loadModel("assets/E-45-Aircraft/E 45 Aircraft_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
 
@@ -93,16 +100,37 @@ class Scene(private val window: GameWindow)  {
         spec = Texture2D.invoke("assets/textures/ground_spec.png",true)
         spec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
+        material = Material(diff,emit,spec,60f, Vector2f(64f,64f))
 
-       material = Material(diff,emit,spec,60f, Vector2f(64f,64f))
+
+        val starres: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/star/stern.obj")
+        val objMesh1: OBJLoader.OBJMesh = starres.objects[0].meshes[0]
+
+        stardiff = Texture2D.invoke("assets/star/star.jpg",true)
+        stardiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+        //emit = Texture2D.invoke("assets/textures/ground_emit.png",true)
+        staremit = Texture2D.invoke("assets/star/star.jpg",true)
+        staremit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+        starspec = Texture2D.invoke("assets/star/star.jpg",true)
+        starspec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+
+        starmaterial = Material(stardiff,staremit,starspec,60f, Vector2f(64f,64f))
+
 
         val stride: Int = 8 * 4
         val attrPos = VertexAttribute(3, GL15.GL_FLOAT, stride, 0)
         val attrTC =  VertexAttribute(2, GL15.GL_FLOAT, stride, 3 * 4)
         val attrNorm =  VertexAttribute(3, GL15.GL_FLOAT, stride, 5 * 4)
         val vertexAttributes = arrayOf(attrPos, attrTC, attrNorm)
-        //kugelMesh = Mesh(objMesh.vertexData, objMesh.indexData, vertexAttributes)
+
+
         val bodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,material)
+
+        val sternmesh  = Mesh(objMesh1.vertexData, objMesh1.indexData, vertexAttributes,starmaterial)
+
+        sternr = Renderable(mutableListOf(sternmesh))
+        sternr.translateLocal(Vector3f(6f,1f,0f))
+        sternr.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
 
 
         bodenr = Renderable(mutableListOf(bodenmesh))
@@ -127,11 +155,11 @@ class Scene(private val window: GameWindow)  {
         pointlight = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
         pointlight.parent = cycle
 
-        pointlightstar = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
-        pointlightstar.parent = star
+       // pointlightstar = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,1f,1f))
+       // pointlightstar.parent = star
 
-        pointlightbus = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
-        pointlightstar.parent = bus
+        pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
+        pointlightbus.parent = bus
 
         spotligt = SpotLight(Vector3f(2f,1f,0f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.parent = cycle
@@ -173,13 +201,17 @@ class Scene(private val window: GameWindow)  {
         spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
+        sternr.render(staticShader)
+        staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
+
         bodenr.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0f))
 
         cycle.render(staticShader)
         bus.render(busShader)
-        star.render(staticShader)
+
+
 
 
 
@@ -207,7 +239,7 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-
+        
     }
 
     fun onKey(key: Int, scancode: Int, action: Int, mode: Int) {}

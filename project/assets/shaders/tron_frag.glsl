@@ -112,22 +112,22 @@ void main(){
 
     //Bus
     // Emissive + Ambient
-    vec3 BUSambientemit = berechnungemit(texemit, shadingcolor);
+    //vec3 BUSambientemit = berechnungemit(texemit, shadingcolor);
     // Diffuse +Sepcular
-    vec3 BUSdiffspecpl = berechnungdifspec(normale, tolight, tocamera, texdiff, texspec, shininess);
-    vec3 BUSdiffspecsl = berechnungdifspec(normale, toSpotLight, tocamera, texdiff, texspec, shininess);
+   // vec3 BUSdiffspecpl = berechnungdifspec(normale, tolight, tocamera, texdiff, texspec, shininess);
+   // vec3 BUSdiffspecsl = berechnungdifspec(normale, toSpotLight, tocamera, texdiff, texspec, shininess);
 
     //Intensity
-    vec3 BUSintensitypl =  berechnungattentuation(pointlength, buspointlight_attenuation) *buspointlight_col;
+    //vec3 BUSintensitypl =  berechnungattentuation(pointlength, buspointlight_attenuation) *buspointlight_col;
 
-    vec3 BUSinternsitysl = berechnungintensity(toSpotLight, busspotlight_dir, busspot_outer, busspot_inner,spotlength, busspotlightAttenuation) *busspotlight_col;
+   // vec3 BUSinternsitysl = berechnungintensity(toSpotLight, busspotlight_dir, busspot_outer, busspot_inner,spotlength, busspotlightAttenuation) *busspotlight_col;
 
     //emissive term
-    vec3 BUSresult = vec3(ambientemit);
+   // vec3 BUSresult = vec3(ambientemit);
     //pointlight
-    BUSresult += BUSdiffspecpl * BUSintensitypl;
+   // BUSresult += BUSdiffspecpl * BUSintensitypl;
     //spotlight
-    BUSresult += BUSdiffspecsl * BUSinternsitysl;
+  //  BUSresult += BUSdiffspecsl * BUSinternsitysl;
     // result += ambientemit;
 
 
