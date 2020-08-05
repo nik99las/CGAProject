@@ -80,11 +80,6 @@ class Scene(private val window: GameWindow)  {
         bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
         bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
-        //star = ModelLoader.loadModel("assets/estrellica.obj", Math.toRadians(90f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        //star.translateLocal(Vector3f(0.0f,3.0f,0.0f))
-       // star = ModelLoader.loadModel("assets/star/stern.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-       // star.translateLocal(Vector3f(6.0f,1.0f,0.0f))
-       // star.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
         //cycle = ModelLoader.loadModel("assets/E-45-Aircraft/E 45 Aircraft_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
 
@@ -108,7 +103,6 @@ class Scene(private val window: GameWindow)  {
 
         stardiff = Texture2D.invoke("assets/star/star.jpg",true)
         stardiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        //emit = Texture2D.invoke("assets/textures/ground_emit.png",true)
         staremit = Texture2D.invoke("assets/star/star.jpg",true)
         staremit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
         starspec = Texture2D.invoke("assets/star/star.jpg",true)
@@ -137,13 +131,6 @@ class Scene(private val window: GameWindow)  {
         bodenr.rotateLocal(0f,90f,0f)
         bodenr.scaleLocal(Vector3f(5f,0.6f,0.5f))
 
-        //kugelr = Renderable(mutableListOf(kugelMesh))
-
-
-
-        //bodenr.rotateLocal(Math.toRadians(90.0f),0f,0f)
-        //bodenr.scaleLocal(Vector3f(0.03f,0.03f,0.03f))
-        // kugelr.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
 
 
         camera = TronCamera()
@@ -154,9 +141,6 @@ class Scene(private val window: GameWindow)  {
 
         pointlight = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
         pointlight.parent = cycle
-
-       // pointlightstar = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,1f,1f))
-       // pointlightstar.parent = star
 
         pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
         pointlightbus.parent = bus
@@ -195,8 +179,8 @@ class Scene(private val window: GameWindow)  {
 
 
 
-        pointlightbus.bind(busShader,"bus")
-        pointlightbus.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
+       // pointlightbus.bind(busShader,"bus")
+        //pointlightbus.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
         spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
@@ -239,7 +223,7 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-        
+
     }
 
     fun onKey(key: Int, scancode: Int, action: Int, mode: Int) {}
