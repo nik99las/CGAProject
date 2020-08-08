@@ -134,5 +134,3 @@ void main(){
     color = vec4(result, 1.0f);
 
 }
-
-

@@ -27,7 +27,7 @@ import kotlin.math.sin
  */
 class Scene(private val window: GameWindow)  {
     private val staticShader: ShaderProgram
-    private val busShader: ShaderProgram
+  //  private val busShader: ShaderProgram
 
 
 
@@ -73,7 +73,7 @@ class Scene(private val window: GameWindow)  {
 
         //staticShader = ShaderProgram("assets/shaders/simple_vert.glsl", "assets/shaders/simple_frag.glsl")
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
-        busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
+       // busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
 
        //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -208,14 +208,14 @@ class Scene(private val window: GameWindow)  {
         camera.translateLocal(Vector3f(0.0f,2.0f,4.0f))
         camera.parent = car
 
-
-        pointlight = PointLight(Vector3f(6f,2f,5f),Vector3f(0f,0f,1f))
+        pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
         pointlight.parent = car
 
         pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
         pointlightbus.parent = bus
 
-        spotligt = SpotLight(Vector3f(2f,1f,0f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
+        spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
+        spotligt.rotateLocal(0f,-50f,0f)
         spotligt.parent = car
 
 
@@ -275,7 +275,9 @@ class Scene(private val window: GameWindow)  {
 
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
-        bus.render(busShader)
+        bus.render(staticShader)
+
+
 
 
 
