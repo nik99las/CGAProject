@@ -56,15 +56,15 @@ class Scene(private val window: GameWindow)  {
     var spotligt :SpotLight
     var olpx :Double
     var oldpy :Double
-    var bus :Renderable
+    var zugr :Renderable
     var haus :Renderable
-    //var baumdiff :Texture2D
-    //var baumemit :Texture2D
-    //var baummaterial :Material
-    //var baumspec :Texture2D
+    var zugdiff :Texture2D
+    var zugemit :Texture2D
+    var baummaterial :Material
+    var zugspec :Texture2D
 
     //var pointlightstar :PointLight
-    var pointlightbus : PointLight
+    //var pointlightbus : PointLight
 
 
 
@@ -131,23 +131,24 @@ class Scene(private val window: GameWindow)  {
         starmaterial = Material(stardiff,staremit,starspec,60f, Vector2f(64f,64f))
 
 
-      //  val baumres: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/house/Cottage_FREE.obj")
-     //   val objMesh3: OBJLoader.OBJMesh = baumres.objects[0].meshes[0]
+        val zugres: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/bus/Sci_fi_Train.obj")
+        val objMesh3: OBJLoader.OBJMesh = zugres.objects[0].meshes[0]
 
-      //  baumdiff = Texture2D.invoke("assets/house/Cottage_Clean_AO.png",true)
-      //  baumdiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-       // baumemit = Texture2D.invoke("assets/house/Cottage_Clean_AO.png",true)
-       // baumemit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-       // baumspec = Texture2D.invoke("assets/house/Cottage_Clean_AO.png",true)
-       // baumspec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+        zugdiff = Texture2D.invoke("assets/bus/engine/traindiffspec.png",true)
+        zugdiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+        zugemit = Texture2D.invoke("assets/bus/engine/train.png",true)
+        zugemit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+        zugspec = Texture2D.invoke("assets/bus/engine/trainspec.png",true)
+        zugspec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
-       // baummaterial = Material(baumdiff,baumemit,baumspec,60f, Vector2f(64f,64f))
+        baummaterial = Material(zugdiff,zugemit,zugspec,60f, Vector2f(100f,100f))
 
-      //  val baummesh  = Mesh(objMesh3.vertexData, objMesh3.indexData, vertexAttributes,baummaterial)
+        val baummesh  = Mesh(objMesh3.vertexData, objMesh3.indexData, vertexAttributes,baummaterial)
 
 
-       // baumr = Renderable(mutableListOf(baummesh))
-       // baumr.translateLocal(Vector3f(2f,2f,0f))
+        zugr = Renderable(mutableListOf(baummesh))
+        zugr.translateLocal(Vector3f(-20f,0f,-30f))
+        zugr.rotateLocal(0f,35f,0f)
 
 
 
@@ -225,9 +226,9 @@ class Scene(private val window: GameWindow)  {
         car.translateLocal(Vector3f(1.6f,0.0f,2.5f))
 
 
-        bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
-        bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
-        bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
+       // bus  = ModelLoader.loadModel("assets/bus/Sci_fi_Train.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        //bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
+       // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
         haus = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(115f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
@@ -241,8 +242,8 @@ class Scene(private val window: GameWindow)  {
         pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
         pointlight.parent = car
 
-        pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
-        pointlightbus.parent = bus
+        //pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
+        //pointlightbus.parent = bus
 
         spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.rotateLocal(0f,-50f,0f)
@@ -301,11 +302,13 @@ class Scene(private val window: GameWindow)  {
         sternr8.render(staticShader)
         sternr9.render(staticShader)
         sternr10.render(staticShader)
+        
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
+        zugr.render(staticShader)
         haus.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
-        bus.render(staticShader)
+
 
 
 
