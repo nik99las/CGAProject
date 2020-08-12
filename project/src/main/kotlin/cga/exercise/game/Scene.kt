@@ -58,6 +58,10 @@ class Scene(private val window: GameWindow)  {
     var oldpy :Double
     var zugr :Renderable
     var haus :Renderable
+    var haus2 :Renderable
+    var haus3 :Renderable
+    var haus4 :Renderable
+    var haus5 :Renderable
     var zugdiff :Texture2D
     var zugemit :Texture2D
     var baummaterial :Material
@@ -221,6 +225,9 @@ class Scene(private val window: GameWindow)  {
 
 
 
+
+       // car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+
         car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         car.scaleLocal(Vector3f(1.5f,1.5f,1.5f))
         car.translateLocal(Vector3f(1.6f,0.0f,2.5f))
@@ -230,13 +237,35 @@ class Scene(private val window: GameWindow)  {
         //bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
        // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
+        //Haus1--------//
         haus = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(115f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
         haus.translateLocal(Vector3f(-52f,0f,-20f))
 
+        haus4 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus4.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
+        haus4.translateLocal(Vector3f(25f,0f,-60f))
+
+
+        //Haus2----------//
+        haus2 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus2.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
+        haus2.translateLocal(Vector3f(1700f,0f,-400f))
+
+        haus3 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus3.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
+        haus3.translateLocal(Vector3f(1500f,0f,-800f))
+
+        haus5 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(-155f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus5.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
+        haus5.translateLocal(Vector3f(-1400f,0f,-50f))
+
+        //------------------------------------------------------//
         camera = TronCamera()
-        camera.rotateLocal(Math.toRadians(-35.0f),0f,0f)
-        camera.translateLocal(Vector3f(0.0f,2.0f,4.0f))
+        //camera.rotateLocal(Math.toRadians(-35.0f),0f,0f)
+        camera.rotateLocal(Math.toRadians(-10.0f),0.1f,0f)
+        camera.translateLocal(Vector3f(4.5f,2.0f,4.0f))
+
         camera.parent = car
 
         pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
@@ -255,7 +284,7 @@ class Scene(private val window: GameWindow)  {
         oldpy = window.mousePos.ypos
 
 
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GLError.checkThrow()
+        glClearColor(.00f, 0.5f, 0.5f, 0.0f); GLError.checkThrow()
         glEnable(GL_DEPTH_TEST); GLError.checkThrow()
         glDepthFunc(GL_LESS); GLError.checkThrow()
 
@@ -306,6 +335,10 @@ class Scene(private val window: GameWindow)  {
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
         zugr.render(staticShader)
         haus.render(staticShader)
+        haus2.render(staticShader)
+        haus3.render(staticShader)
+        haus4.render(staticShader)
+        haus5.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
 
