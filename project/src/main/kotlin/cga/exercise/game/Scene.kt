@@ -114,7 +114,7 @@ class Scene(private val window: GameWindow)  {
         diff = Texture2D.invoke("assets/textures/ground_diff.png",true)
         diff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
         //emit = Texture2D.invoke("assets/textures/ground_emit.png",true)
-        emit = Texture2D.invoke("assets/bus/Texturizer/vier.jpg",true)
+        emit = Texture2D.invoke("assets/bus/Texturizer/Frame 2.png",true)
         emit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
         spec = Texture2D.invoke("assets/textures/ground_spec.png",true)
         spec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
@@ -163,7 +163,7 @@ class Scene(private val window: GameWindow)  {
         bodenr = Renderable(mutableListOf(bodenmesh))
         bodenr.translateLocal(Vector3f(-95f,0f,-195f))
         bodenr.rotateLocal(0f,90f,0f)
-        bodenr.scaleLocal(Vector3f(10f,0.6f,0.5f))
+        bodenr.scaleLocal(Vector3f(10f,0.6f,0.9f))
 
 
 
