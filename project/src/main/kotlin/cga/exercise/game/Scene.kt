@@ -236,9 +236,9 @@ class Scene(private val window: GameWindow)  {
 
        // car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
-        car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-63f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         car.scaleLocal(Vector3f(1.5f,1.5f,1.5f))
-        car.translateLocal(Vector3f(1.6f,0.0f,2.5f))
+        car.translateLocal(Vector3f(-0.5f,0.2f,2.5f))
 
 
        // bus  = ModelLoader.loadModel("assets/bus/Sci_fi_Train.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -304,6 +304,7 @@ class Scene(private val window: GameWindow)  {
         camera = TronCamera()
         //camera.rotateLocal(Math.toRadians(-35.0f),0f,0f)
         camera.rotateLocal(Math.toRadians(-10.0f),0.1f,0f)
+
         camera.translateLocal(Vector3f(4.5f,2.0f,4.0f))
 
         camera.parent = car
@@ -411,13 +412,13 @@ class Scene(private val window: GameWindow)  {
 
         }
         if(window.getKeyState(GLFW_KEY_A)){
-            car.translateLocal(Vector3f(0.0f,0.0f,-5.0f*dt))
-            car.rotateLocal(0.0f,1f*dt,0.0f)
+            car.translateLocal(Vector3f(-60.0f*dt,0.0f,30.0f*dt))
+           // car.rotateLocal(0.0f,1f*dt,0.0f)
         }
         if(window.getKeyState(GLFW_KEY_D)){
 
-            car.translateLocal(Vector3f(0.0f,0.0f,-5.0f*dt))
-            car.rotateLocal(0.0f,-1f*dt,0.0f)
+            car.translateLocal(Vector3f(60.0f*dt,0.0f,-29.0f*dt))
+            //car.rotateLocal(0.0f,-1f*dt,0.0f)
 
         }
 
