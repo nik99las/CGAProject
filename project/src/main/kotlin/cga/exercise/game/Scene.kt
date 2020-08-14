@@ -75,14 +75,11 @@ class Scene(private val window: GameWindow)  {
     var baummaterial :Material
     var zugspec :Texture2D
 
+
+
     //var pointlightstar :PointLight
     //var pointlightbus : PointLight
-
-
-
-
-
-
+    
 
     //scene setup
     init {
@@ -390,27 +387,32 @@ class Scene(private val window: GameWindow)  {
         haus13.render(staticShader)
         staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
+        if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
 
+         car.translateLocal(Vector3f(0*dt,0.0f,0f*dt))
 
+       }
+        else {
 
+            car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
+        }
 
-
-
-
+       //Thread.sleep(2000)
+       // car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
 
 
     }
 
     fun update(dt: Float, t: Float) {
 
-        if(window.getKeyState(GLFW_KEY_W)){
+       // if(window.getKeyState(GLFW_KEY_W)){
 
-            car.translateLocal(Vector3f(-7.5f*dt,0.0f,-15f*dt))
-        }
-        if(window.getKeyState(GLFW_KEY_S)){
-            car.translateLocal(Vector3f(7.5f*dt,0f,15.0f*dt))
+           // car.translateLocal(Vector3f(-7.5f*dt,0.0f,-15f*dt))
+      //  }
+       // if(window.getKeyState(GLFW_KEY_S)){
+           // car.translateLocal(Vector3f(7.5f*dt,0f,15.0f*dt))
 
-        }
+       // }
         if(window.getKeyState(GLFW_KEY_A)){
             car.translateLocal(Vector3f(-60.0f*dt,0.0f,30.0f*dt))
            // car.rotateLocal(0.0f,1f*dt,0.0f)
