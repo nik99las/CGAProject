@@ -414,16 +414,20 @@ class Scene(private val window: GameWindow)  {
 
        // }
         if(window.getKeyState(GLFW_KEY_A)){
-            car.translateLocal(Vector3f(-60.0f*dt,0.0f,30.0f*dt))
+            //car.translateLocal(Vector3f(-1.0f,0.0f,30.0f))
+            car.translateLocal(Vector3f(-10.0f*dt,0.0f,5.0f*dt))
            // car.rotateLocal(0.0f,1f*dt,0.0f)
         }
         if(window.getKeyState(GLFW_KEY_D)){
 
-            car.translateLocal(Vector3f(60.0f*dt,0.0f,-29.0f*dt))
+            //car.translateLocal(Vector3f(1.0f,0.0f,-29.0f))
+            car.translateLocal(Vector3f(10.0f*dt,0.0f,-5.0f*dt))
             //car.rotateLocal(0.0f,-1f*dt,0.0f)
 
         }
 
+        if(car.getPosition() == Vector3f(-95f,0f,-195f))
+            car.translateLocal(Vector3f(-0.5f,0.2f,2.5f))
 
     }
 
