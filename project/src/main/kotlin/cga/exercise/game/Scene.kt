@@ -431,7 +431,22 @@ class Scene(private val window: GameWindow)  {
 
     }
 
-    fun onKey(key: Int, scancode: Int, action: Int, mode: Int) {}
+    fun onKey(key: Int, scancode: Int, action: Int, mode: Int) {
+
+        if(window.getKeyState(GLFW_KEY_N)){
+            camera.rotateLocal(Math.toRadians(-80.0f),0.0f,0.0f)
+            camera.translateLocal(Vector3f(0.0f,12.0f,10.0f))
+
+        }
+
+        if(window.getKeyState(GLFW_KEY_B)){
+            camera.rotateLocal(Math.toRadians(70.0f),0.1f,0f)
+            camera.translateLocal(Vector3f(0.0f,-10.0f,-8.0f))
+
+        }
+
+
+    }
 
     fun onMouseMove(xpos: Double, ypos: Double) {
 
