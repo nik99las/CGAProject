@@ -18,3 +18,13 @@ Bspw.
 - Dynamische Kamera (Steuerung mittels Maus und "WASD" auf der Tastatur) (Carola und Armin)
 - Verschiedene Shaderprogramme (Wechsel mittels "s") (Carola)
 - ...
+
+
+
+# Quellenangaben
+
+Auto:
+Haus(klein):
+Haus(groß) :
+Zug :
+Stern : selbst erstelltes Modell(Niklas)
