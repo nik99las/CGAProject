@@ -24,7 +24,7 @@ Bspw.
 # Quellenangaben
 
 - Auto:
-- Haus(klein):
+- Haus(klein): https://free3d.com/3d-model/new-york-city-brownstone-building-v1--277076.html
 - Haus(groß) :https://www.turbosquid.com/3d-models/maya-house/408090
 - Zug : https://www.turbosquid.com/3d-models/scifi-train-model-1325979
 - Stern : selbst erstelltes Modell(Niklas)
