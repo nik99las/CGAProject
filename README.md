@@ -23,8 +23,8 @@ Bspw.
 
 # Quellenangaben
 
-Auto:
-Haus(klein):
-Haus(groß) :
-Zug :
-Stern : selbst erstelltes Modell(Niklas)
+- Auto:
+- Haus(klein):
+- Haus(groß) :
+- Zug :
+- Stern : selbst erstelltes Modell(Niklas)
