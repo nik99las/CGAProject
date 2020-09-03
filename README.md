@@ -26,5 +26,5 @@ Bspw.
 - Auto:
 - Haus(klein):
 - Haus(groß) :
-- Zug :
+- Zug : https://www.turbosquid.com/3d-models/scifi-train-model-1325979
 - Stern : selbst erstelltes Modell(Niklas)
