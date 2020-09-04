@@ -43,6 +43,7 @@ class Scene(private val window: GameWindow)  {
     var sternr9 :Renderable
     var sternr10 :Renderable
     var camera :TronCamera
+    var cameraoben :TronCamera
     var material :Material
     var diff :Texture2D
     var emit :Texture2D
@@ -299,12 +300,17 @@ class Scene(private val window: GameWindow)  {
 
         //------------------------------------------------------//
         camera = TronCamera()
+        cameraoben = TronCamera()
+
         //camera.rotateLocal(Math.toRadians(-35.0f),0f,0f)
         camera.rotateLocal(Math.toRadians(-10.0f),0.1f,0f)
-
         camera.translateLocal(Vector3f(4.5f,2.0f,4.0f))
-
         camera.parent = car
+
+        cameraoben.rotateLocal(Math.toRadians(-80.0f),0.0f,0.0f)
+        cameraoben.translateLocal(Vector3f(0.0f,12.0f,10.0f))
+
+        cameraoben.parent = car
 
         pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
         pointlight.parent = car
@@ -312,7 +318,7 @@ class Scene(private val window: GameWindow)  {
         //pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
         //pointlightbus.parent = bus
 
-        spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(1f,1f,1f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
+        spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(0f,0f,0f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.rotateLocal(0f,-50f,0f)
         spotligt.parent = car
 
@@ -340,10 +346,20 @@ class Scene(private val window: GameWindow)  {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
 
         staticShader.use()
-        camera.bind(staticShader)
+
+        if(window.getKeyState(GLFW_KEY_K)){  // K für Kamera drücken
+
+            cameraoben.bind(staticShader)
+
+        }
+        else {
+
+            camera.bind(staticShader)
+        }
+
 
         pointlight.bind(staticShader,"bike")
-        pointlight.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
+        pointlight.color = Vector3f(1f,1f,1f)
 
 
 
@@ -385,14 +401,14 @@ class Scene(private val window: GameWindow)  {
         haus11.render(staticShader)
         haus12.render(staticShader)
         haus13.render(staticShader)
-        staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
+        //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
         if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
 
          car.translateLocal(Vector3f(0*dt,0.0f,0f*dt))
 
        }
-        else {
+        else if(window.getKeyState(GLFW_KEY_ENTER)) {
 
             car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
         }
@@ -426,8 +442,10 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-        if(car.getPosition() == Vector3f(-95f,0f,-195f))
-            car.translateLocal(Vector3f(-0.5f,0.2f,2.5f))
+        if(car.getPosition() == zugr.getPosition())
+            car.translateLocal(Vector3f(-10.5f,0.2f,100.5f))
+        if(car.getPosition() == sternr1.getPosition())
+            car.translateLocal(Vector3f(-10.5f,0.2f,100.5f))
 
     }
 
@@ -452,24 +470,28 @@ class Scene(private val window: GameWindow)  {
 
 
 
-        val distanceX = window.mousePos.xpos - olpx
+       /* val distanceX = window.mousePos.xpos - olpx
         val distanceY = window.mousePos.ypos - oldpy
 
         if(distanceX > 0){
             camera.rotateAroundPoint(0f,Math.toRadians(distanceX.toFloat() *0.02f),0f, Vector3f(0f,0f,0f))
+            cameraoben.rotateAroundPoint(0f,Math.toRadians(distanceX.toFloat() *0.02f),0f, Vector3f(0f,0f,0f))
         }
         if(distanceX < 0){
-           camera.rotateAroundPoint(0f,Math.toRadians(distanceX.toFloat() * 0.02f),0f, Vector3f(0f,0f,0f))
+            camera.rotateAroundPoint(0f,Math.toRadians(distanceX.toFloat() * 0.02f),0f, Vector3f(0f,0f,0f))
+            cameraoben.rotateAroundPoint(0f,Math.toRadians(distanceX.toFloat() * 0.02f),0f, Vector3f(0f,0f,0f))
         }
         if(distanceY > 0){
             camera.rotateAroundPoint(Math.toRadians(distanceY.toFloat() *0.02f),0f,0f, Vector3f(0f,0f,0f))
+            cameraoben.rotateAroundPoint(Math.toRadians(distanceY.toFloat() *0.02f),0f,0f, Vector3f(0f,0f,0f))
         }
         if(distanceY < 0){
             camera.rotateAroundPoint(Math.toRadians(distanceY.toFloat() * 0.02f),0f,0f, Vector3f(0f,0f,0f))
+            cameraoben.rotateAroundPoint(Math.toRadians(distanceY.toFloat() * 0.02f),0f,0f, Vector3f(0f,0f,0f))
         }
 
       olpx = window.mousePos.xpos
-        oldpy = window.mousePos.ypos
+        oldpy = window.mousePos.ypos*/
 
     }
 
