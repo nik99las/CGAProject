@@ -303,7 +303,7 @@ class Scene(private val window: GameWindow)  {
         cameraoben = TronCamera()
 
         //camera.rotateLocal(Math.toRadians(-35.0f),0f,0f)
-        camera.rotateLocal(Math.toRadians(-10.0f),0.1f,0f)
+        camera.rotateLocal(Math.toRadians(-10.0f),0.4f,0.2f)
         camera.translateLocal(Vector3f(4.5f,2.0f,4.0f))
         camera.parent = car
 
@@ -328,7 +328,7 @@ class Scene(private val window: GameWindow)  {
         oldpy = window.mousePos.ypos
 
 
-        glClearColor(.00f, 0.5f, 0.5f, 0.0f); GLError.checkThrow()
+        glClearColor(.00f, 0.5f, 0.9f, 0.0f); GLError.checkThrow()
         glEnable(GL_DEPTH_TEST); GLError.checkThrow()
         glDepthFunc(GL_LESS); GLError.checkThrow()
 
@@ -470,7 +470,7 @@ class Scene(private val window: GameWindow)  {
 
 
 
-       /* val distanceX = window.mousePos.xpos - olpx
+       val distanceX = window.mousePos.xpos - olpx
         val distanceY = window.mousePos.ypos - oldpy
 
         if(distanceX > 0){
@@ -491,7 +491,7 @@ class Scene(private val window: GameWindow)  {
         }
 
       olpx = window.mousePos.xpos
-        oldpy = window.mousePos.ypos*/
+        oldpy = window.mousePos.ypos
 
     }
 
