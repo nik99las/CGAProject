@@ -78,6 +78,7 @@ class Scene(private val window: GameWindow)  {
     var baummaterial :Material
     var zugspec :Texture2D
 
+
     //var pointlightstar :PointLight
     //var pointlightbus : PointLight
     
@@ -94,7 +95,7 @@ class Scene(private val window: GameWindow)  {
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-       // cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars3.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        //testauto = ModelLoader.loadModel("assets/AUto/car.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
        // car.scaleLocal(Vector3f(2f,2f,2f))
         //car.rotateLocal(0f,0f,0f)
@@ -403,6 +404,7 @@ class Scene(private val window: GameWindow)  {
         haus13.render(staticShader)
         //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
+
 
         /*if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
 
