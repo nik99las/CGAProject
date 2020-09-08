@@ -73,6 +73,9 @@ class Scene(private val window: GameWindow)  {
     var haus11 :Renderable
     var haus12 :Renderable
     var haus13 :Renderable
+    var haus14 :Renderable
+    var haus15 :Renderable
+    var haus16 :Renderable
     var zugdiff :Texture2D
     var zugemit :Texture2D
     var baummaterial :Material
@@ -256,6 +259,11 @@ class Scene(private val window: GameWindow)  {
         haus13 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(115f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus13.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
         haus13.translateLocal(Vector3f(-193f,0f,-300f))
+
+        haus16 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(115f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus16.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
+        haus16.translateLocal(Vector3f(-295f,0f,-500f))
+
         //Haus1------rechts//
         haus4 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus4.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
@@ -268,6 +276,10 @@ class Scene(private val window: GameWindow)  {
         haus7 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus7.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
         haus7.translateLocal(Vector3f(-45f,0f,-200f))
+
+        haus14 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus14.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
+        haus14.translateLocal(Vector3f(-193f,0f,-500f))
 
 
         //Haus2----------rechts//
@@ -286,6 +298,11 @@ class Scene(private val window: GameWindow)  {
         haus9 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus9.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
         haus9.translateLocal(Vector3f(-3500f,0f,-11000f))
+
+        haus15 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus15.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
+        haus15.translateLocal(Vector3f(-14550f,0f,-33000f))
+
         //Haus2--------links//
         haus5 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(-155f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus5.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
@@ -298,6 +315,10 @@ class Scene(private val window: GameWindow)  {
         haus11 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(-155f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus11.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
         haus11.translateLocal(Vector3f(-3400f,0f,-4000f))
+
+        haus11 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(-155f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus11.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
+        haus11.translateLocal(Vector3f(-15500f,0f,-28000f))
 
         //------------------------------------------------------//
         camera = TronCamera()
@@ -402,6 +423,9 @@ class Scene(private val window: GameWindow)  {
         haus11.render(staticShader)
         haus12.render(staticShader)
         haus13.render(staticShader)
+        haus14.render(staticShader)
+        haus15.render(staticShader)
+        haus16.render(staticShader)
         //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
 
@@ -428,7 +452,7 @@ class Scene(private val window: GameWindow)  {
 
         if (window.getKeyState(GLFW_KEY_W)) {
 
-            car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
+            car.translateLocal(Vector3f(-15f * dt, 0.0f, -30f * dt))
         }
         if (window.getKeyState(GLFW_KEY_S)) {
             car.translateLocal(Vector3f(7.5f * dt, 0f, 15.0f * dt))
@@ -452,7 +476,23 @@ class Scene(private val window: GameWindow)  {
             exitProcess(0)
             // cleanup()
         }
+        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+            println("Du hast gewonnen")
+            exitProcess(0)
 
+
+        }
+
+      //  if (car.getPosition().x <= -197.9f && car.getPosition().x >= -198f) {
+       //     println("Du hast gewonnen")
+       //     exitProcess(0)
+
+      //w  }
+        //if (car.getPosition().x <= -190.9f && car.getPosition().x >= -200f) {
+        //    println("Du hast gewonnen")
+         //   exitProcess(0)
+
+       //sw }
 
         if(car.getPosition() == sternr1.getPosition())
             car.translateLocal(Vector3f(-10.5f,10.2f,100.5f))
