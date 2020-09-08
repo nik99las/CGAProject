@@ -76,6 +76,7 @@ class Scene(private val window: GameWindow)  {
     var haus14 :Renderable
     var haus15 :Renderable
     var haus16 :Renderable
+    var haus17 :Renderable
     var zugdiff :Texture2D
     var zugemit :Texture2D
     var baummaterial :Material
@@ -281,6 +282,10 @@ class Scene(private val window: GameWindow)  {
         haus14.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
         haus14.translateLocal(Vector3f(-193f,0f,-500f))
 
+        haus17 = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus17.scaleLocal(Vector3f(0.4f,0.4f,0.4f))
+        haus17.translateLocal(Vector3f(-420f,0f,-950f))
+
 
         //Haus2----------rechts//
         haus2 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -302,6 +307,10 @@ class Scene(private val window: GameWindow)  {
         haus15 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         haus15.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
         haus15.translateLocal(Vector3f(-14550f,0f,-33000f))
+
+        haus15 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(30f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        haus15.scaleLocal(Vector3f(0.01f,0.01f,0.01f))
+        haus15.translateLocal(Vector3f(-10570f,0f,-25000f))
 
         //Haus2--------links//
         haus5 = ModelLoader.loadModel("assets/NewYorkHouse/13940_New_York_City_Brownstone_Building_v1_l2.obj", Math.toRadians(-90f), Math.toRadians(-155f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -426,6 +435,7 @@ class Scene(private val window: GameWindow)  {
         haus14.render(staticShader)
         haus15.render(staticShader)
         haus16.render(staticShader)
+        haus17.render(staticShader)
         //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
 
