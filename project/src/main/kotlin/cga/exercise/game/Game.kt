@@ -7,7 +7,7 @@ import cga.framework.GameWindow
  */
 class Game(width: Int,
            height: Int,
-           fullscreen: Boolean = true,
+           fullscreen: Boolean = false,
            vsync: Boolean = false,
            title: String = "Testgame",
            GLVersionMajor: Int = 3,

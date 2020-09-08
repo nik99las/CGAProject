@@ -13,6 +13,7 @@ import cga.framework.GLError
 import cga.framework.GameWindow
 import cga.framework.ModelLoader
 import cga.framework.OBJLoader
+
 import org.joml.Math
 import org.joml.Vector2f
 import org.joml.Vector3f
@@ -20,6 +21,7 @@ import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL15
 import kotlin.math.sin
+import kotlin.system.exitProcess
 
 
 /**
@@ -75,8 +77,6 @@ class Scene(private val window: GameWindow)  {
     var zugemit :Texture2D
     var baummaterial :Material
     var zugspec :Texture2D
-
-
 
     //var pointlightstar :PointLight
     //var pointlightbus : PointLight
@@ -337,7 +337,7 @@ class Scene(private val window: GameWindow)  {
         glFrontFace(GL_CCW)
         glCullFace(GL_BACK)
 
-
+        println(zugr.getPosition())
 
     }
 
@@ -403,7 +403,8 @@ class Scene(private val window: GameWindow)  {
         haus13.render(staticShader)
         //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
-        if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
+
+        /*if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
 
          car.translateLocal(Vector3f(0*dt,0.0f,0f*dt))
 
@@ -411,41 +412,48 @@ class Scene(private val window: GameWindow)  {
         else if(window.getKeyState(GLFW_KEY_ENTER)) {
 
             car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
-        }
+        }*/
 
        //Thread.sleep(2000)
        // car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
 
 
+        println(car.getPosition())
+
     }
 
     fun update(dt: Float, t: Float) {
 
-       // if(window.getKeyState(GLFW_KEY_W)){
+        if (window.getKeyState(GLFW_KEY_W)) {
 
-           // car.translateLocal(Vector3f(-7.5f*dt,0.0f,-15f*dt))
-      //  }
-       // if(window.getKeyState(GLFW_KEY_S)){
-           // car.translateLocal(Vector3f(7.5f*dt,0f,15.0f*dt))
-
-       // }
-        if(window.getKeyState(GLFW_KEY_A)){
-            //car.translateLocal(Vector3f(-1.0f,0.0f,30.0f))
-            car.translateLocal(Vector3f(-10.0f*dt,0.0f,5.0f*dt))
-           // car.rotateLocal(0.0f,1f*dt,0.0f)
+            car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
         }
-        if(window.getKeyState(GLFW_KEY_D)){
+        if (window.getKeyState(GLFW_KEY_S)) {
+            car.translateLocal(Vector3f(7.5f * dt, 0f, 15.0f * dt))
+
+        }
+        if (window.getKeyState(GLFW_KEY_A)) {
+            //car.translateLocal(Vector3f(-1.0f,0.0f,30.0f))
+            car.translateLocal(Vector3f(-10.0f * dt, 0.0f, 5.0f * dt))
+            // car.rotateLocal(0.0f,1f*dt,0.0f)
+        }
+        if (window.getKeyState(GLFW_KEY_D)) {
 
             //car.translateLocal(Vector3f(1.0f,0.0f,-29.0f))
-            car.translateLocal(Vector3f(10.0f*dt,0.0f,-5.0f*dt))
+            car.translateLocal(Vector3f(10.0f * dt, 0.0f, -5.0f * dt))
             //car.rotateLocal(0.0f,-1f*dt,0.0f)
 
         }
 
-        if(car.getPosition() == zugr.getPosition())
-            car.translateLocal(Vector3f(-10.5f,0.2f,100.5f))
+        if (car.getPosition().x <= -19.0f && car.getPosition().x >= -19.01f) {
+            //car.translateLocal(Vector3f(-10.5f, 10.2f, 100.5f))
+            exitProcess(0)
+            // cleanup()
+        }
+
+
         if(car.getPosition() == sternr1.getPosition())
-            car.translateLocal(Vector3f(-10.5f,0.2f,100.5f))
+            car.translateLocal(Vector3f(-10.5f,10.2f,100.5f))
 
     }
 
@@ -496,6 +504,8 @@ class Scene(private val window: GameWindow)  {
     }
 
 
-    fun cleanup() {}
+    fun cleanup() {
+
+    }
 
 }
