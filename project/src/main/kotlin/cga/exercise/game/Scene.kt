@@ -81,6 +81,11 @@ class Scene(private val window: GameWindow)  {
     var zugemit :Texture2D
     var baummaterial :Material
     var zugspec :Texture2D
+    var Rennauto :Renderable
+    var Rennauto2 :Renderable
+    var Rennauto3 :Renderable
+    var Rennauto4 :Renderable
+
 
 
     //var pointlightstar :PointLight
@@ -99,7 +104,6 @@ class Scene(private val window: GameWindow)  {
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        //testauto = ModelLoader.loadModel("assets/AUto/car.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
        // car.scaleLocal(Vector3f(2f,2f,2f))
         //car.rotateLocal(0f,0f,0f)
@@ -233,10 +237,26 @@ class Scene(private val window: GameWindow)  {
 
 
 
+        //Zweites Auto Gegner
+        Rennauto = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        Rennauto.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
+        Rennauto.translateLocal(Vector3f(-17.5f,0f,-30f))
+        Rennauto.rotateLocal(0f,35f,0f)
 
+        Rennauto2 = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        Rennauto2.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
+        Rennauto2.translateLocal(Vector3f(-25f,0f,-60f))
+        Rennauto2.rotateLocal(0f,35f,0f)
 
+        Rennauto3 = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        Rennauto3.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
+        Rennauto3.translateLocal(Vector3f(-17.5f,0f,-30f))
+        Rennauto3.rotateLocal(0f,35f,0f)
 
-
+        Rennauto4 = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        Rennauto4.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
+        Rennauto4.translateLocal(Vector3f(-17.5f,0f,-30f))
+        Rennauto4.rotateLocal(0f,35f,0f)
        // car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
         car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-63f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -418,7 +438,7 @@ class Scene(private val window: GameWindow)  {
         sternr10.render(staticShader)
         
         staticShader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
-        zugr.render(staticShader)
+        //zugr.render(staticShader)
         haus.render(staticShader)
         haus2.render(staticShader)
         haus3.render(staticShader)
@@ -438,6 +458,8 @@ class Scene(private val window: GameWindow)  {
         haus17.render(staticShader)
         //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(staticShader)
+        Rennauto.render(staticShader)
+        Rennauto2.render(staticShader)
 
 
         /*if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
@@ -481,11 +503,11 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-        if (car.getPosition().x <= -19.0f && car.getPosition().x >= -19.01f) {
+       /* if (car.getPosition().x <= -19.0f && car.getPosition().x >= -19.01f) {
             //car.translateLocal(Vector3f(-10.5f, 10.2f, 100.5f))
             exitProcess(0)
             // cleanup()
-        }
+        }*/
         if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
             println("Du hast gewonnen")
             exitProcess(0)
