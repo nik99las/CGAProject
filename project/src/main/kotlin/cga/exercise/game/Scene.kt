@@ -20,7 +20,6 @@ import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL15
-import kotlin.math.sin
 import kotlin.system.exitProcess
 
 
@@ -29,7 +28,7 @@ import kotlin.system.exitProcess
  */
 class Scene(private val window: GameWindow)  {
     private val staticShader: ShaderProgram
-  //  private val busShader: ShaderProgram
+    //  private val busShader: ShaderProgram
 
 
 
@@ -85,12 +84,14 @@ class Scene(private val window: GameWindow)  {
     var Rennauto2 :Renderable
     var Rennauto3 :Renderable
     var Rennauto4 :Renderable
+    var toonShader : ShaderProgram
+    var spielshader : ShaderProgram
 
 
 
     //var pointlightstar :PointLight
     //var pointlightbus : PointLight
-    
+
 
     //scene setup
     init {
@@ -98,22 +99,24 @@ class Scene(private val window: GameWindow)  {
 
         //staticShader = ShaderProgram("assets/shaders/simple_vert.glsl", "assets/shaders/simple_frag.glsl")
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
-       // busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
+        toonShader = ShaderProgram("assets/shaders/toon_vert.glsl", "assets/shaders/toon_frag.glsl")
+        // busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
 
-       //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        spielshader= staticShader
+        //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         //car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-       // car.scaleLocal(Vector3f(2f,2f,2f))
+        // car.scaleLocal(Vector3f(2f,2f,2f))
         //car.rotateLocal(0f,0f,0f)
         //car.translateLocal(Vector3f(1.0f,0.0f,0.0f))
 
 
 
-       // bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
-       // bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
-       // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
+        // bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        // bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
+        // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
         //cycle = ModelLoader.loadModel("assets/E-45-Aircraft/E 45 Aircraft_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
@@ -257,16 +260,16 @@ class Scene(private val window: GameWindow)  {
         Rennauto4.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
         Rennauto4.translateLocal(Vector3f(-17.5f,0f,-30f))
         Rennauto4.rotateLocal(0f,35f,0f)
-       // car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        // car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
         car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-63f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         car.scaleLocal(Vector3f(1.5f,1.5f,1.5f))
         car.translateLocal(Vector3f(-0.5f,0.2f,2.5f))
 
 
-       // bus  = ModelLoader.loadModel("assets/bus/Sci_fi_Train.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
+        // bus  = ModelLoader.loadModel("assets/bus/Sci_fi_Train.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
         //bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
-       // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
+        // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
         //Haus1--------links//
         haus = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(115f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -396,84 +399,88 @@ class Scene(private val window: GameWindow)  {
 
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
 
-        staticShader.use()
+
+        if(window.getKeyState(GLFW_KEY_J)) {
+           spielshader= toonShader
+
+        }
+        if(window.getKeyState(GLFW_KEY_H)) {
+            spielshader= staticShader
+
+        }
+
+        spielshader.use()
+        pointlight.bind(spielshader, "bike")
+        pointlight.color = Vector3f(1f,1f,1f)
 
         if(window.getKeyState(GLFW_KEY_K)){  // K für Kamera drücken
 
-            cameraoben.bind(staticShader)
+            cameraoben.bind(spielshader)
 
         }
         else {
 
-            camera.bind(staticShader)
+            camera.bind(spielshader)
         }
 
 
-        pointlight.bind(staticShader,"bike")
-        pointlight.color = Vector3f(1f,1f,1f)
-
-
-
-       // pointlightbus.bind(busShader,"bus")
+        // pointlightbus.bind(busShader,"bus")
         //pointlightbus.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
-        spotligt.bind(staticShader,"bike", camera.getCalculateViewMatrix())
-        staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
+        spotligt.bind(spielshader,"bike", camera.getCalculateViewMatrix())
+        spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
 
-        bodenr.render(staticShader)
+        bodenr.render(spielshader)
 
         //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0f))
-        staticShader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
+        spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
-        sternr1.render(staticShader)
-        sternr2.render(staticShader)
-        sternr3.render(staticShader)
-        sternr4.render(staticShader)
-        sternr5.render(staticShader)
-        sternr6.render(staticShader)
-        sternr7.render(staticShader)
-        sternr8.render(staticShader)
-        sternr9.render(staticShader)
-        sternr10.render(staticShader)
-        
-        staticShader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
+        sternr1.render(spielshader)
+        sternr2.render(spielshader)
+        sternr3.render(spielshader)
+        sternr4.render(spielshader)
+        sternr5.render(spielshader)
+        sternr6.render(spielshader)
+        sternr7.render(spielshader)
+        sternr8.render(spielshader)
+        sternr9.render(spielshader)
+        sternr10.render(spielshader)
+
+        spielshader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
         //zugr.render(staticShader)
-        haus.render(staticShader)
-        haus2.render(staticShader)
-        haus3.render(staticShader)
-        haus4.render(staticShader)
-        haus5.render(staticShader)
-        haus6.render(staticShader)
-        haus7.render(staticShader)
-        haus8.render(staticShader)
-        haus9.render(staticShader)
-        haus10.render(staticShader)
-        haus11.render(staticShader)
-        haus12.render(staticShader)
-        haus13.render(staticShader)
-        haus14.render(staticShader)
-        haus15.render(staticShader)
-        haus16.render(staticShader)
-        haus17.render(staticShader)
+        haus.render(spielshader)
+        haus2.render(spielshader)
+        haus3.render(spielshader)
+        haus4.render(spielshader)
+        haus5.render(spielshader)
+        haus6.render(spielshader)
+        haus7.render(spielshader)
+        haus8.render(spielshader)
+        haus9.render(spielshader)
+        haus10.render(spielshader)
+        haus11.render(spielshader)
+        haus12.render(spielshader)
+        haus13.render(spielshader)
+        haus14.render(spielshader)
+        haus15.render(spielshader)
+        haus16.render(spielshader)
+        haus17.render(spielshader)
         //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
-        car.render(staticShader)
-        Rennauto.render(staticShader)
-        Rennauto2.render(staticShader)
+        car.render(spielshader)
+        Rennauto.render(spielshader)
+        Rennauto2.render(spielshader)
 
 
         /*if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
-
          car.translateLocal(Vector3f(0*dt,0.0f,0f*dt))
-
        }
         else if(window.getKeyState(GLFW_KEY_ENTER)) {
-
             car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
         }*/
 
-       //Thread.sleep(2000)
-       // car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
+        //Thread.sleep(2000)
+        // car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
 
 
         println(car.getPosition())
@@ -503,11 +510,11 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-       /* if (car.getPosition().x <= -19.0f && car.getPosition().x >= -19.01f) {
-            //car.translateLocal(Vector3f(-10.5f, 10.2f, 100.5f))
-            exitProcess(0)
-            // cleanup()
-        }*/
+        /* if (car.getPosition().x <= -19.0f && car.getPosition().x >= -19.01f) {
+             //car.translateLocal(Vector3f(-10.5f, 10.2f, 100.5f))
+             exitProcess(0)
+             // cleanup()
+         }*/
         if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
             println("Du hast gewonnen")
             exitProcess(0)
@@ -515,16 +522,16 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-      //  if (car.getPosition().x <= -197.9f && car.getPosition().x >= -198f) {
-       //     println("Du hast gewonnen")
-       //     exitProcess(0)
+        //  if (car.getPosition().x <= -197.9f && car.getPosition().x >= -198f) {
+        //     println("Du hast gewonnen")
+        //     exitProcess(0)
 
-      //w  }
+        //w  }
         //if (car.getPosition().x <= -190.9f && car.getPosition().x >= -200f) {
         //    println("Du hast gewonnen")
-         //   exitProcess(0)
+        //   exitProcess(0)
 
-       //sw }
+        //sw }
 
         if(car.getPosition() == sternr1.getPosition())
             car.translateLocal(Vector3f(-10.5f,10.2f,100.5f))
@@ -552,7 +559,7 @@ class Scene(private val window: GameWindow)  {
 
 
 
-       val distanceX = window.mousePos.xpos - olpx
+        val distanceX = window.mousePos.xpos - olpx
         val distanceY = window.mousePos.ypos - oldpy
 
         if(distanceX > 0){
@@ -572,7 +579,7 @@ class Scene(private val window: GameWindow)  {
             cameraoben.rotateAroundPoint(Math.toRadians(distanceY.toFloat() * 0.02f),0f,0f, Vector3f(0f,0f,0f))
         }
 
-      olpx = window.mousePos.xpos
+        olpx = window.mousePos.xpos
         oldpy = window.mousePos.ypos
 
     }
