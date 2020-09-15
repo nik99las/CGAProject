@@ -86,6 +86,7 @@ class Scene(private val window: GameWindow)  {
     var Rennauto4 :Renderable
     var toonShader : ShaderProgram
     var spielshader : ShaderProgram
+    var gesammelteSterne :Int = 0
 
 
 
@@ -97,28 +98,13 @@ class Scene(private val window: GameWindow)  {
     init {
 
 
+
         //staticShader = ShaderProgram("assets/shaders/simple_vert.glsl", "assets/shaders/simple_frag.glsl")
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
         toonShader = ShaderProgram("assets/shaders/toon_vert.glsl", "assets/shaders/toon_frag.glsl")
-        // busShader = ShaderProgram("assets/shaders/bus_vert.glsl", "assets/shaders/bus_frag.glsl")
 
         spielshader= staticShader
-        //cycle  = ModelLoader.loadModel("assets/Light Cycle/Light Cycle/HQ_Movie cycle.obj",Math.toRadians(-90f),Math.toRadians(90f),0f) ?: throw IllegalArgumentException("Could not load the model")
-        //cycle = ModelLoader.loadModel("assets/rx-7 veilside fortune.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        //cycle = ModelLoader.loadModel("assets/80-futuristic_car_2.0_cgtrader_obj/Futuristic_Car_2.1_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        //cycle = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        //car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
-        // car.scaleLocal(Vector3f(2f,2f,2f))
-        //car.rotateLocal(0f,0f,0f)
-        //car.translateLocal(Vector3f(1.0f,0.0f,0.0f))
 
-
-
-        // bus  = ModelLoader.loadModel("assets/bus/Material/bus_setia_negara_texturizer.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
-        // bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
-        // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
-
-        //cycle = ModelLoader.loadModel("assets/E-45-Aircraft/E 45 Aircraft_obj.obj", Math.toRadians(0f), Math.toRadians(0f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
         val stride: Int = 8 * 4
         val attrPos = VertexAttribute(3, GL15.GL_FLOAT, stride, 0)
@@ -189,54 +175,57 @@ class Scene(private val window: GameWindow)  {
         val sternmesh  = Mesh(objMesh1.vertexData, objMesh1.indexData, vertexAttributes,starmaterial)
 
         sternr1 = Renderable(mutableListOf(sternmesh))
-        sternr1.translateLocal(Vector3f(-11f,1f,-20f))
+        sternr1.translateLocal(Vector3f(-8f,1f,-22f))
         sternr1.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr1.rotateLocal(0f,0f,-25f)
+        sternr1.rotateLocal(0f,-160f,-270f)
 
         sternr2 = Renderable(mutableListOf(sternmesh))
-        sternr2.translateLocal(Vector3f(-25f,1f,-40f))
+        sternr2.translateLocal(Vector3f(-19f,1f,-60f))
         sternr2.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr2.rotateLocal(0f,0f,-25f)
+        sternr2.rotateLocal(0f,-160f,-270f)
+
 
         sternr3 = Renderable(mutableListOf(sternmesh))
-        sternr3.translateLocal(Vector3f(-20f,1f,-60f))
+        sternr3.translateLocal(Vector3f(-55f,1f,-100f))
         sternr3.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr3.rotateLocal(0f,0f,-25f)
+        sternr3.rotateLocal(0f,-160f,-270f)
+
 
         sternr4 = Renderable(mutableListOf(sternmesh))
-        sternr4.translateLocal(Vector3f(-44f,1f,-80f))
+        sternr4.translateLocal(Vector3f(-67f,1f,-140f))
         sternr4.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr4.rotateLocal(0f,0f,-25f)
+        sternr4.rotateLocal(0f,-160f,-270f)
 
         sternr5 = Renderable(mutableListOf(sternmesh))
-        sternr5.translateLocal(Vector3f(-55f,1f,-100f))
+        sternr5.translateLocal(Vector3f(-76.5f,1f,-175f))
         sternr5.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr5.rotateLocal(0f,0f,-25f)
+        sternr5.rotateLocal(0f,-160f,-270f)
 
         sternr6 = Renderable(mutableListOf(sternmesh))
-        sternr6.translateLocal(Vector3f(-66f,1f,-120f))
+        sternr6.translateLocal(Vector3f(-107.5f,1f,-220f))
         sternr6.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr6.rotateLocal(0f,0f,-25f)
+        sternr6.rotateLocal(0f,-160f,-270f)
 
         sternr7 = Renderable(mutableListOf(sternmesh))
-        sternr7.translateLocal(Vector3f(-77f,1f,-140f))
+        sternr7.translateLocal(Vector3f(-130.5f,1f,-250f))
         sternr7.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr7.rotateLocal(0f,0f,-25f)
+        sternr7.rotateLocal(0f,-160f,-270f)
 
-        sternr8 = Renderable(mutableListOf(sternmesh))
-        sternr8.translateLocal(Vector3f(-110f,1f,-220f))
-        sternr8.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr8.rotateLocal(0f,0f,-25f)
+         sternr8 = Renderable(mutableListOf(sternmesh))
+         sternr8.translateLocal(Vector3f(-139.5f,1f,-300f))
+         sternr8.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
+         sternr8.rotateLocal(0f,-160f,-270f)
+
 
         sternr9 = Renderable(mutableListOf(sternmesh))
-        sternr9.translateLocal(Vector3f(-150f,1f,-290f))
+        sternr9.translateLocal(Vector3f(-168f,1f,-340f))
         sternr9.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr9.rotateLocal(0f,0f,-25f)
+        sternr9.rotateLocal(0f,-160f,-270f)
 
         sternr10 = Renderable(mutableListOf(sternmesh))
-        sternr10.translateLocal(Vector3f(-180f,1f,-380f))
+        sternr10.translateLocal(Vector3f(-196f,1f,-380f))
         sternr10.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
-        sternr10.rotateLocal(0f,0f,-25f)
+        sternr10.rotateLocal(0f,-160f,-270f)
 
 
 
@@ -260,16 +249,11 @@ class Scene(private val window: GameWindow)  {
         Rennauto4.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
         Rennauto4.translateLocal(Vector3f(-17.5f,0f,-30f))
         Rennauto4.rotateLocal(0f,35f,0f)
-        // car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars2.obj", Math.toRadians(0f), Math.toRadians(-65f), 0f) ?: throw IllegalArgumentException("Could not load the model")
 
         car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-63f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         car.scaleLocal(Vector3f(1.5f,1.5f,1.5f))
         car.translateLocal(Vector3f(-0.5f,0.2f,2.5f))
 
-
-        // bus  = ModelLoader.loadModel("assets/bus/Sci_fi_Train.obj",Math.toRadians(0f),Math.toRadians(0f),0f) ?: throw IllegalArgumentException("Could not load the model")
-        //bus.scaleLocal(Vector3f(0.5f,0.5f,0.5f))
-        // bus.translateLocal(Vector3f(-4.0f,0.0f,0.0f))
 
         //Haus1--------links//
         haus = ModelLoader.loadModel("assets/house/CH_building1.obj", Math.toRadians(0f), Math.toRadians(115f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -369,8 +353,6 @@ class Scene(private val window: GameWindow)  {
         pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
         pointlight.parent = car
 
-        //pointlightbus = PointLight(Vector3f(0f,2f,5f),Vector3f(0f,0f,1f))
-        //pointlightbus.parent = bus
 
         spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(0f,0f,0f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.rotateLocal(0f,-50f,0f)
@@ -479,15 +461,17 @@ class Scene(private val window: GameWindow)  {
             car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
         }*/
 
-        //Thread.sleep(2000)
-        // car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
+
 
 
         println(car.getPosition())
+        println(gesammelteSterne)
 
     }
 
     fun update(dt: Float, t: Float) {
+
+
 
         if (window.getKeyState(GLFW_KEY_W)) {
 
@@ -516,7 +500,7 @@ class Scene(private val window: GameWindow)  {
              // cleanup()
          }*/
         if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
-            println("Du hast gewonnen")
+            println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
             exitProcess(0)
 
 
@@ -533,25 +517,75 @@ class Scene(private val window: GameWindow)  {
 
         //sw }
 
-        if(car.getPosition() == sternr1.getPosition())
-            car.translateLocal(Vector3f(-10.5f,10.2f,100.5f))
 
+
+        if(car.getPosition().x <= -11.1f &&  car.getPosition().x >= -11.92f  && car.getPosition().z <= -18.0f &&  car.getPosition().z >= -19.8f )
+        {
+
+            sternr1.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+
+        }
+
+        if(car.getPosition().x <= -22.4f &&  car.getPosition().x >= -23.3f  && car.getPosition().z <= -55.9f &&  car.getPosition().z >= -57.3f )
+        {
+
+            sternr2.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+
+        if(car.getPosition().x <= -58.4f &&  car.getPosition().x >= -59.2f  && car.getPosition().z <= -95.5f &&  car.getPosition().z >= -98.6f )
+        {
+
+            sternr3.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+        if(car.getPosition().x <= -69.8f &&  car.getPosition().x >= -71.2f  && car.getPosition().z <= -136.8f &&  car.getPosition().z >= -137.3f )
+        {
+
+            sternr4.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+
+        if(car.getPosition().x <= -79.0f &&  car.getPosition().x >= -80.2f  && car.getPosition().z <= -170.6f &&  car.getPosition().z >= -171.9f )
+        {
+
+            sternr5.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+        if(car.getPosition().x <= -110.0f &&  car.getPosition().x >= -111.9f  && car.getPosition().z <= -216f &&  car.getPosition().z >= -217.8f )
+        {
+
+            sternr6.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+        if(car.getPosition().x <= -133.4f &&  car.getPosition().x >= -134f  && car.getPosition().z <= -245.6f &&  car.getPosition().z >= -247.5f )
+        {
+
+            sternr7.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+        if(car.getPosition().x <= -141.5f &&  car.getPosition().x >= -143.8f  && car.getPosition().z <= -296f &&  car.getPosition().z >= -297.2f )
+        {
+
+            sternr8.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+        if(car.getPosition().x <= -170.5f &&  car.getPosition().x >= -172.8f  && car.getPosition().z <= -336.0f &&  car.getPosition().z >= -337.9f )
+        {
+
+            sternr9.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
+        if(car.getPosition().x <= -198.6f &&  car.getPosition().x >= -200.4f  && car.getPosition().z <= -376f &&  car.getPosition().z >= -377.5f )
+        {
+
+            sternr10.translateLocal(Vector3f(10000f,10000f,10000f))
+            gesammelteSterne += 1
+        }
     }
 
     fun onKey(key: Int, scancode: Int, action: Int, mode: Int) {
-
-        if(window.getKeyState(GLFW_KEY_N)){
-            camera.rotateLocal(Math.toRadians(-80.0f),0.0f,0.0f)
-            camera.translateLocal(Vector3f(0.0f,12.0f,10.0f))
-
-        }
-
-        if(window.getKeyState(GLFW_KEY_B)){
-            camera.rotateLocal(Math.toRadians(70.0f),0.1f,0f)
-            camera.translateLocal(Vector3f(0.0f,-10.0f,-8.0f))
-
-        }
-
 
     }
 
