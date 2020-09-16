@@ -76,6 +76,7 @@ class Scene(private val window: GameWindow)  {
     var Rennauto2 :Renderable
     var Rennauto3 :Renderable
     var Rennauto4 :Renderable
+    var Rennauto5 :Renderable
     var toonShader : ShaderProgram
     var spielshader : ShaderProgram
     var gesammelteSterne :Int = 0
@@ -202,13 +203,18 @@ class Scene(private val window: GameWindow)  {
 
         Rennauto3 = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         Rennauto3.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
-        Rennauto3.translateLocal(Vector3f(-17.5f,0f,-30f))
+        Rennauto3.translateLocal(Vector3f(-42.5f,0f,-80f))
         Rennauto3.rotateLocal(0f,35f,0f)
 
         Rennauto4 = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         Rennauto4.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
-        Rennauto4.translateLocal(Vector3f(-17.5f,0f,-30f))
+        Rennauto4.translateLocal(Vector3f(-59.5f,0f,-122f))
         Rennauto4.rotateLocal(0f,35f,0f)
+
+        Rennauto5 = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        Rennauto5.scaleLocal(Vector3f(2.0f,2.0f,2.0f))
+        Rennauto5.translateLocal(Vector3f(-78.5f,0f,-150f))
+        Rennauto5.rotateLocal(0f,35f,0f)
 
         car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-63f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         car.scaleLocal(Vector3f(1.5f,1.5f,1.5f))
@@ -342,7 +348,7 @@ class Scene(private val window: GameWindow)  {
 
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
 
-
+        //Shaderauswahl
         if(window.getKeyState(GLFW_KEY_J)) { //J für Toon Shader
            spielshader= toonShader
 
@@ -409,7 +415,9 @@ class Scene(private val window: GameWindow)  {
         car.render(spielshader)
         Rennauto.render(spielshader)
         Rennauto2.render(spielshader)
-
+        Rennauto3.render(spielshader)
+        Rennauto4.render(spielshader)
+        Rennauto5.render(spielshader)
 
         /*if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
          car.translateLocal(Vector3f(0*dt,0.0f,0f*dt))
@@ -448,6 +456,38 @@ class Scene(private val window: GameWindow)  {
             //car.translateLocal(Vector3f(1.0f,0.0f,-29.0f))
             car.translateLocal(Vector3f(10.0f * dt, 0.0f, -5.0f * dt))
             //car.rotateLocal(0.0f,-1f*dt,0.0f)
+
+        }
+
+        //Collision mit Rennautos
+        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -18f && car.getPosition().z >= -19f) {
+            println("Du hast verloren")
+            exitProcess(0)
+
+
+        }
+        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+            println("Du hast verloren")
+            exitProcess(0)
+
+
+        }
+        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+            println("Du hast verloren")
+            exitProcess(0)
+
+
+        }
+        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+            println("Du hast verloren")
+            exitProcess(0)
+
+
+        }
+        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+            println("Du hast verloren")
+            exitProcess(0)
+
 
         }
 
