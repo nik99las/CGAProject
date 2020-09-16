@@ -28,7 +28,7 @@ import kotlin.system.exitProcess
  */
 class Scene(private val window: GameWindow)  {
     private val staticShader: ShaderProgram
- 
+
     var bodenr :Renderable
     var sternr1 :Renderable
     var sternr2 :Renderable
@@ -306,7 +306,7 @@ class Scene(private val window: GameWindow)  {
         camera.parent = car
 
         cameraoben.rotateLocal(Math.toRadians(-80.0f),0.0f,0.0f)
-        cameraoben.translateLocal(Vector3f(0.0f,12.0f,10.0f))
+        cameraoben.translateLocal(Vector3f(0.0f,12.0f,15.0f))
 
         cameraoben.parent = car
 
@@ -317,7 +317,6 @@ class Scene(private val window: GameWindow)  {
         spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(0f,0f,0f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.rotateLocal(0f,-50f,0f)
         spotligt.parent = car
-
 
 
         olpx = window.mousePos.xpos
@@ -332,6 +331,8 @@ class Scene(private val window: GameWindow)  {
         glEnable(GL_CULL_FACE)
         glFrontFace(GL_CCW)
         glCullFace(GL_BACK)
+
+
 
 
 
