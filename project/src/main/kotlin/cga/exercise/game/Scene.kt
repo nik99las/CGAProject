@@ -80,6 +80,17 @@ class Scene(private val window: GameWindow)  {
     var toonShader : ShaderProgram
     var spielshader : ShaderProgram
     var gesammelteSterne :Int = 0
+    var pointlightstern1 :PointLight
+    var pointlightstern2 :PointLight
+    var pointlightstern3 :PointLight
+    var pointlightstern4 :PointLight
+    var pointlightstern5 :PointLight
+    var pointlightstern6 :PointLight
+    var pointlightstern7 :PointLight
+    var pointlightstern8 :PointLight
+    var pointlightstern9 :PointLight
+    var pointlightstern10 :PointLight
+
 
     //scene setup
     init {
@@ -319,6 +330,37 @@ class Scene(private val window: GameWindow)  {
         pointlight = PointLight(Vector3f(0f,2f,0f),Vector3f(0f,0f,1f))
         pointlight.parent = car
 
+        pointlightstern1 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern1.parent = sternr1
+
+        pointlightstern2 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern2.parent = sternr2
+
+        pointlightstern3 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern3.parent = sternr3
+
+        pointlightstern4 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern4.parent = sternr4
+
+        pointlightstern5 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern5.parent = sternr5
+
+        pointlightstern6 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern6.parent = sternr6
+
+        pointlightstern7 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern7.parent = sternr7
+
+        pointlightstern8 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern8.parent = sternr8
+
+        pointlightstern9 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern9.parent = sternr9
+
+        pointlightstern10 = PointLight(Vector3f(0f,3f,0f),Vector3f(0f,0f,1f))
+        pointlightstern10.parent = sternr10
+
+
 
         spotligt = SpotLight(Vector3f(1f,1f,-1f),Vector3f(0f,0f,0f),Math.cos(Math.toRadians(30f)),Math.cos(Math.toRadians(50f)))
         spotligt.rotateLocal(0f,-50f,0f)
@@ -361,6 +403,38 @@ class Scene(private val window: GameWindow)  {
         spielshader.use()
         pointlight.bind(spielshader, "bike")
         pointlight.color = Vector3f(1f,1f,1f)
+
+        pointlightstern1.bind(spielshader, "stern1")
+        pointlightstern1.color = Vector3f(1f,1f,0f)
+
+        pointlightstern2.bind(spielshader, "stern2")
+        pointlightstern2.color = Vector3f(1f,1f,0f)
+
+        pointlightstern3.bind(spielshader, "stern3")
+        pointlightstern3.color = Vector3f(1f,1f,0f)
+
+        pointlightstern4.bind(spielshader, "stern4")
+        pointlightstern4.color = Vector3f(1f,1f,0f)
+
+        pointlightstern5.bind(spielshader, "stern5")
+        pointlightstern5.color = Vector3f(1f,1f,0f)
+
+        pointlightstern6.bind(spielshader, "stern6")
+        pointlightstern6.color = Vector3f(1f,1f,0f)
+
+        pointlightstern7.bind(spielshader, "stern7")
+        pointlightstern7.color = Vector3f(1f,1f,0f)
+
+        pointlightstern8.bind(spielshader, "stern8")
+        pointlightstern8.color = Vector3f(1f,1f,0f)
+
+        pointlightstern9.bind(spielshader, "stern9")
+        pointlightstern9.color = Vector3f(1f,1f,0f)
+
+        pointlightstern10.bind(spielshader, "stern10")
+        pointlightstern10.color = Vector3f(1f,1f,0f)
+
+
 
         if(window.getKeyState(GLFW_KEY_K)){  // K für Kamera drücken
 

@@ -8,6 +8,17 @@ in struct VertexData
     vec3 lightdir;
     vec3 lightdirsp;
     vec3 viewdir;
+    vec3   stern1lightdir;
+    vec3   stern2lightdir;
+    vec3   stern3lightdir;
+    vec3   stern4lightdir;
+    vec3   stern5lightdir;
+    vec3   stern6lightdir;
+    vec3   stern7lightdir;
+    vec3   stern8lightdir;
+    vec3   stern9lightdir;
+    vec3   stern10lightdir;
+
 } vertexData;
 
 //uniforms
@@ -26,14 +37,45 @@ uniform vec3 bikepointlight_attenuation;
 uniform vec3 bikespotLightAttenuation;
 uniform vec3 shadingcolor;
 
-//Bus
-uniform vec3 buspointlight_col;
-uniform vec3 busspotlight_dir;
-uniform float busspot_inner;
-uniform float busspot_outer;
-uniform vec3 busspotlight_col;
-uniform vec3 buspointlight_attenuation;
-uniform vec3 busspotlightAttenuation;
+//Stern1
+uniform vec3 stern1pointlight_col;
+uniform vec3 stern1pointlight_attenuation;
+
+//Stern2
+uniform vec3 stern2pointlight_col;
+uniform vec3 stern2pointlight_attenuation;
+
+//Stern3
+uniform vec3 stern3pointlight_col;
+uniform vec3 stern3pointlight_attenuation;
+
+//Stern4
+uniform vec3 stern4pointlight_col;
+uniform vec3 stern4pointlight_attenuation;
+
+//Stern5
+uniform vec3 stern5pointlight_col;
+uniform vec3 stern5pointlight_attenuation;
+
+//Stern6
+uniform vec3 stern6pointlight_col;
+uniform vec3 stern6pointlight_attenuation;
+
+//Stern7
+uniform vec3 stern7pointlight_col;
+uniform vec3 stern7pointlight_attenuation;
+
+//Stern8
+uniform vec3 stern8pointlight_col;
+uniform vec3 stern8pointlight_attenuation;
+
+//Stern9
+uniform vec3 stern9pointlight_col;
+uniform vec3 stern9pointlight_attenuation;
+
+//Stern10
+uniform vec3 stern10pointlight_col;
+uniform vec3 stern10pointlight_attenuation;
 
 //fragment shader output
 out vec4 color;
@@ -64,13 +106,67 @@ void main(){
     vec3 tocamera = normalize(vertexData.viewdir);
     float pointlength = length(vertexData.lightdir);
     vec3 tolight = vertexData.lightdir /pointlength;
+
+    float stern1pointlength = length(vertexData.stern1lightdir);
+    vec3 stern1tolight = vertexData.stern1lightdir /stern1pointlength;
+
+    float stern2pointlength = length(vertexData.stern2lightdir);
+    vec3 stern2tolight = vertexData.stern2lightdir /stern2pointlength;
+
+    float stern3pointlength = length(vertexData.stern3lightdir);
+    vec3 stern3tolight = vertexData.stern3lightdir /stern3pointlength;
+
+    float stern4pointlength = length(vertexData.stern4lightdir);
+    vec3 stern4tolight = vertexData.stern4lightdir /stern4pointlength;
+
+    float stern5pointlength = length(vertexData.stern5lightdir);
+    vec3 stern5tolight = vertexData.stern5lightdir /stern5pointlength;
+
+    float stern6pointlength = length(vertexData.stern6lightdir);
+    vec3 stern6tolight = vertexData.stern6lightdir /stern6pointlength;
+
+    float stern7pointlength = length(vertexData.stern7lightdir);
+    vec3 stern7tolight = vertexData.stern7lightdir /stern7pointlength;
+
+    float stern8pointlength = length(vertexData.stern8lightdir);
+    vec3 stern8tolight = vertexData.stern8lightdir /stern8pointlength;
+
+    float stern9pointlength = length(vertexData.stern9lightdir);
+    vec3 stern9tolight = vertexData.stern9lightdir /stern9pointlength;
+
+    float stern10pointlength = length(vertexData.stern10lightdir);
+    vec3 stern10tolight = vertexData.stern10lightdir /stern10pointlength;
     //Farbwerte der Texturen
     vec3 texemit = texture(emit, vertexData.tc).rgb ;
     vec3 texdiff = texture(diff, vertexData.tc).rgb;
     vec3 texspec = texture(specular, vertexData.tc).rgb;
 
-    //Ankommende Lichtintensität
+
+    vec3 diffspecplstern1 = berechnungdifspec(normale, stern1tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern2 = berechnungdifspec(normale, stern2tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern3 = berechnungdifspec(normale, stern3tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern4 = berechnungdifspec(normale, stern4tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern5 = berechnungdifspec(normale, stern5tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern6 = berechnungdifspec(normale, stern6tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern7 = berechnungdifspec(normale, stern7tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern8 = berechnungdifspec(normale, stern8tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern9 = berechnungdifspec(normale, stern9tolight, tocamera, texdiff, texspec, shininess);
+    vec3 diffspecplstern10 = berechnungdifspec(normale, stern10tolight, tocamera, texdiff, texspec, shininess);
+
+
     vec3 intensitypl =  berechnungattentuation(pointlength, bikepointlight_attenuation) *bikepointlight_col;
+
+    vec3 intensityplstern1 =  berechnungattentuation(stern1pointlength, stern1pointlight_attenuation) *stern1pointlight_col;
+    vec3 intensityplstern2 =  berechnungattentuation(stern2pointlength, stern2pointlight_attenuation) *stern2pointlight_col;
+    vec3 intensityplstern3 =  berechnungattentuation(stern3pointlength, stern3pointlight_attenuation) *stern3pointlight_col;
+    vec3 intensityplstern4 =  berechnungattentuation(stern4pointlength, stern4pointlight_attenuation) *stern4pointlight_col;
+    vec3 intensityplstern5 =  berechnungattentuation(stern5pointlength, stern5pointlight_attenuation) *stern5pointlight_col;
+    vec3 intensityplstern6 =  berechnungattentuation(stern6pointlength, stern6pointlight_attenuation) *stern6pointlight_col;
+    vec3 intensityplstern7 =  berechnungattentuation(stern7pointlength, stern7pointlight_attenuation) *stern7pointlight_col;
+    vec3 intensityplstern8 =  berechnungattentuation(stern8pointlength, stern8pointlight_attenuation) *stern8pointlight_col;
+    vec3 intensityplstern9 =  berechnungattentuation(stern9pointlength, stern9pointlight_attenuation) *stern9pointlight_col;
+    vec3 intensityplstern10 =  berechnungattentuation(stern10pointlength, stern10pointlight_attenuation) *stern10pointlight_col;
+
     //Emmissiver Part
     vec3 result = texemit * shadingcolor;
 
@@ -78,6 +174,17 @@ void main(){
 
     //licht
     result += berechnungdifspec(normale, tolight, tocamera, texdiff, texspec, shininess) * intensitypl;
+    result += diffspecplstern1 *intensityplstern1;
+    result += diffspecplstern2 *intensityplstern2;
+    result += diffspecplstern3 *intensityplstern3;
+    result += diffspecplstern4 *intensityplstern4;
+    result += diffspecplstern5 *intensityplstern5;
+    result += diffspecplstern6 *intensityplstern6;
+    result += diffspecplstern7 *intensityplstern7;
+    result += diffspecplstern8 *intensityplstern8;
+    result += diffspecplstern9 *intensityplstern9;
+    result += diffspecplstern10 *intensityplstern10;
     color = vec4(floor(result[0]*10)/10, floor(result[1]*10)/10, floor(result[2]*10)/10, 1.0f);
     //color = vec4(res, 1.0f);
 }
+
