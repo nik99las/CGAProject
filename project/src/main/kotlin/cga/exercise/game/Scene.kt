@@ -28,10 +28,7 @@ import kotlin.system.exitProcess
  */
 class Scene(private val window: GameWindow)  {
     private val staticShader: ShaderProgram
-    //  private val busShader: ShaderProgram
-
-
-
+ 
     var bodenr :Renderable
     var sternr1 :Renderable
     var sternr2 :Renderable
@@ -58,7 +55,6 @@ class Scene(private val window: GameWindow)  {
     var spotligt :SpotLight
     var olpx :Double
     var oldpy :Double
-    var zugr :Renderable
     var haus :Renderable
     var haus2 :Renderable
     var haus3 :Renderable
@@ -76,10 +72,6 @@ class Scene(private val window: GameWindow)  {
     var haus15 :Renderable
     var haus16 :Renderable
     var haus17 :Renderable
-    var zugdiff :Texture2D
-    var zugemit :Texture2D
-    var baummaterial :Material
-    var zugspec :Texture2D
     var Rennauto :Renderable
     var Rennauto2 :Renderable
     var Rennauto3 :Renderable
@@ -88,17 +80,8 @@ class Scene(private val window: GameWindow)  {
     var spielshader : ShaderProgram
     var gesammelteSterne :Int = 0
 
-
-
-
-    //var pointlightstar :PointLight
-    //var pointlightbus : PointLight
-
-
     //scene setup
     init {
-
-
 
         //staticShader = ShaderProgram("assets/shaders/simple_vert.glsl", "assets/shaders/simple_frag.glsl")
         staticShader = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
@@ -140,28 +123,6 @@ class Scene(private val window: GameWindow)  {
         starmaterial = Material(stardiff,staremit,starspec,60f, Vector2f(64f,64f))
 
 
-        val zugres: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/bus/Sci_fi_Train.obj")
-        val objMesh3: OBJLoader.OBJMesh = zugres.objects[0].meshes[0]
-
-        zugdiff = Texture2D.invoke("assets/bus/engine/traindiffspec.png",true)
-        zugdiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        zugemit = Texture2D.invoke("assets/bus/engine/train.png",true)
-        zugemit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        zugspec = Texture2D.invoke("assets/bus/engine/trainspec.png",true)
-        zugspec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-
-        baummaterial = Material(zugdiff,zugemit,zugspec,60f, Vector2f(100f,100f))
-
-        val baummesh  = Mesh(objMesh3.vertexData, objMesh3.indexData, vertexAttributes,baummaterial)
-
-
-        zugr = Renderable(mutableListOf(baummesh))
-        zugr.translateLocal(Vector3f(-20f,0f,-30f))
-        zugr.rotateLocal(0f,35f,0f)
-
-
-
-
         val bodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,material)
 
 
@@ -169,8 +130,6 @@ class Scene(private val window: GameWindow)  {
         bodenr.translateLocal(Vector3f(-95f,0f,-195f))
         bodenr.rotateLocal(0f,90f,0f)
         bodenr.scaleLocal(Vector3f(10f,0.6f,0.9f))
-
-
 
 
         val sternmesh  = Mesh(objMesh1.vertexData, objMesh1.indexData, vertexAttributes,starmaterial)
@@ -341,7 +300,7 @@ class Scene(private val window: GameWindow)  {
         camera = TronCamera()
         cameraoben = TronCamera()
 
-        //camera.rotateLocal(Math.toRadians(-35.0f),0f,0f)
+
         camera.rotateLocal(Math.toRadians(-10.0f),0.4f,0.2f)
         camera.translateLocal(Vector3f(4.5f,2.0f,4.0f))
         camera.parent = car
@@ -374,7 +333,7 @@ class Scene(private val window: GameWindow)  {
         glFrontFace(GL_CCW)
         glCullFace(GL_BACK)
 
-        println(zugr.getPosition())
+
 
     }
 
@@ -383,11 +342,11 @@ class Scene(private val window: GameWindow)  {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
 
 
-        if(window.getKeyState(GLFW_KEY_J)) {
+        if(window.getKeyState(GLFW_KEY_J)) { //J für Toon Shader
            spielshader= toonShader
 
         }
-        if(window.getKeyState(GLFW_KEY_H)) {
+        if(window.getKeyState(GLFW_KEY_H)) { //H für Static Shader
             spielshader= staticShader
 
         }
@@ -406,9 +365,6 @@ class Scene(private val window: GameWindow)  {
             camera.bind(spielshader)
         }
 
-
-        // pointlightbus.bind(busShader,"bus")
-        //pointlightbus.color = Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat())))
 
         spotligt.bind(spielshader,"bike", camera.getCalculateViewMatrix())
         spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
@@ -431,7 +387,6 @@ class Scene(private val window: GameWindow)  {
         sternr10.render(spielshader)
 
         spielshader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
-        //zugr.render(staticShader)
         haus.render(spielshader)
         haus2.render(spielshader)
         haus3.render(spielshader)
