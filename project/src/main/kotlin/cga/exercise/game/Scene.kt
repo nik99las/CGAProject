@@ -90,6 +90,7 @@ class Scene(private val window: GameWindow)  {
 
 
 
+
     //var pointlightstar :PointLight
     //var pointlightbus : PointLight
 
@@ -494,11 +495,7 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-        /* if (car.getPosition().x <= -19.0f && car.getPosition().x >= -19.01f) {
-             //car.translateLocal(Vector3f(-10.5f, 10.2f, 100.5f))
-             exitProcess(0)
-             // cleanup()
-         }*/
+        // Linke Spur Ende
         if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
             println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
             exitProcess(0)
@@ -506,28 +503,28 @@ class Scene(private val window: GameWindow)  {
 
         }
 
-        //  if (car.getPosition().x <= -197.9f && car.getPosition().x >= -198f) {
-        //     println("Du hast gewonnen")
-        //     exitProcess(0)
+        // Mitlere Spur Ende
+          if (car.getPosition().x <= -197.3f && car.getPosition().x >= -198.4f && car.getPosition().z <= -390.2f && car.getPosition().z >= -391.5) {
+              println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
+             exitProcess(0)
 
-        //w  }
-        //if (car.getPosition().x <= -190.9f && car.getPosition().x >= -200f) {
-        //    println("Du hast gewonnen")
-        //   exitProcess(0)
+          }
 
-        //sw }
+        //Rechte Spur Ende
+        if (car.getPosition().x <= -191.5f && car.getPosition().x >= -192f && car.getPosition().z <= -394.2f && car.getPosition().z >= -395.2) {
+            println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
+           exitProcess(0)
+             }
+        //
 
+    if (car.getPosition().x <= -11.1f && car.getPosition().x >= -11.92f && car.getPosition().z <= -18.0f && car.getPosition().z >= -19.8f) {
 
+        sternr1.translateLocal(Vector3f(10000f, 10000f, 10000f))
+        gesammelteSterne += 1
 
-        if(car.getPosition().x <= -11.1f &&  car.getPosition().x >= -11.92f  && car.getPosition().z <= -18.0f &&  car.getPosition().z >= -19.8f )
-        {
+    }
 
-            sternr1.translateLocal(Vector3f(10000f,10000f,10000f))
-            gesammelteSterne += 1
-
-        }
-
-        if(car.getPosition().x <= -22.4f &&  car.getPosition().x >= -23.3f  && car.getPosition().z <= -55.9f &&  car.getPosition().z >= -57.3f )
+      if(car.getPosition().x <= -22.4f &&  car.getPosition().x >= -23.3f  && car.getPosition().z <= -55.9f &&  car.getPosition().z >= -57.3f )
         {
 
             sternr2.translateLocal(Vector3f(10000f,10000f,10000f))
