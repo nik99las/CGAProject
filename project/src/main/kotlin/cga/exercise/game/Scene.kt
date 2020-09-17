@@ -90,6 +90,16 @@ class Scene(private val window: GameWindow)  {
     var pointlightstern8 :PointLight
     var pointlightstern9 :PointLight
     var pointlightstern10 :PointLight
+    var altePosition :Int = 0
+    var sterni2 :Int = 0
+    var sterni3 :Int = 0
+    var sterni4 :Int = 0
+    var sterni5 :Int = 0
+    var sterni6 :Int = 0
+    var sterni7 :Int = 0
+    var sterni8 :Int = 0
+    var sterni9 :Int = 0
+    var sterni10 :Int = 0
 
 
     //scene setup
@@ -534,31 +544,31 @@ class Scene(private val window: GameWindow)  {
         }
 
         //Collision mit Rennautos
-        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -18f && car.getPosition().z >= -19f) {
+        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
             println("Du hast verloren")
             exitProcess(0)
 
@@ -586,69 +596,78 @@ class Scene(private val window: GameWindow)  {
            exitProcess(0)
              }
         //
-
-    if (car.getPosition().x <= -11.1f && car.getPosition().x >= -11.92f && car.getPosition().z <= -18.0f && car.getPosition().z >= -19.8f) {
+    if (car.getPosition().x <= -11.1f && car.getPosition().x >= -11.92f && car.getPosition().z <= -18.0f && car.getPosition().z >= -19.8f && altePosition == 0 ) {
 
         sternr1.translateLocal(Vector3f(10000f, 10000f, 10000f))
         gesammelteSterne += 1
-
+        altePosition = 1
     }
 
-      if(car.getPosition().x <= -22.4f &&  car.getPosition().x >= -23.3f  && car.getPosition().z <= -55.9f &&  car.getPosition().z >= -57.3f )
+
+      if(car.getPosition().x <= -22.4f &&  car.getPosition().x >= -23.3f  && car.getPosition().z <= -55.9f &&  car.getPosition().z >= -57.3f && sterni2 == 0)
         {
 
             sternr2.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni2= 1
         }
 
-        if(car.getPosition().x <= -58.4f &&  car.getPosition().x >= -59.2f  && car.getPosition().z <= -95.5f &&  car.getPosition().z >= -98.6f )
+        if(car.getPosition().x <= -58.4f &&  car.getPosition().x >= -59.2f  && car.getPosition().z <= -95.5f &&  car.getPosition().z >= -98.6f && sterni3 == 0)
         {
 
             sternr3.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni3 = 1
         }
-        if(car.getPosition().x <= -69.8f &&  car.getPosition().x >= -71.2f  && car.getPosition().z <= -136.8f &&  car.getPosition().z >= -137.3f )
+        if(car.getPosition().x <= -69.8f &&  car.getPosition().x >= -71.2f  && car.getPosition().z <= -136.8f &&  car.getPosition().z >= -137.3f && sterni4 == 0)
         {
 
             sternr4.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni4 == 1
         }
 
-        if(car.getPosition().x <= -79.0f &&  car.getPosition().x >= -80.2f  && car.getPosition().z <= -170.6f &&  car.getPosition().z >= -171.9f )
+        if(car.getPosition().x <= -79.0f &&  car.getPosition().x >= -80.2f  && car.getPosition().z <= -170.6f &&  car.getPosition().z >= -171.9f && sterni5 == 0)
         {
 
             sternr5.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni5 = 1
         }
-        if(car.getPosition().x <= -110.0f &&  car.getPosition().x >= -111.9f  && car.getPosition().z <= -216f &&  car.getPosition().z >= -217.8f )
+        if(car.getPosition().x <= -110.0f &&  car.getPosition().x >= -111.9f  && car.getPosition().z <= -216f &&  car.getPosition().z >= -217.8f && sterni6 == 0)
         {
 
             sternr6.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni6 = 1
         }
-        if(car.getPosition().x <= -133.4f &&  car.getPosition().x >= -134f  && car.getPosition().z <= -245.6f &&  car.getPosition().z >= -247.5f )
+        if(car.getPosition().x <= -133.4f &&  car.getPosition().x >= -134f  && car.getPosition().z <= -245.6f &&  car.getPosition().z >= -247.5f && sterni7 == 0)
         {
 
             sternr7.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni7 = 1
         }
-        if(car.getPosition().x <= -141.5f &&  car.getPosition().x >= -143.8f  && car.getPosition().z <= -296f &&  car.getPosition().z >= -297.2f )
+        if(car.getPosition().x <= -141.5f &&  car.getPosition().x >= -143.8f  && car.getPosition().z <= -296f &&  car.getPosition().z >= -297.2f && sterni8 == 0)
         {
 
             sternr8.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni8 = 1
         }
-        if(car.getPosition().x <= -170.5f &&  car.getPosition().x >= -172.8f  && car.getPosition().z <= -336.0f &&  car.getPosition().z >= -337.9f )
+        if(car.getPosition().x <= -170.5f &&  car.getPosition().x >= -172.8f  && car.getPosition().z <= -336.0f &&  car.getPosition().z >= -337.9f && sterni9 == 0)
         {
 
             sternr9.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni9 = 1
         }
-        if(car.getPosition().x <= -198.6f &&  car.getPosition().x >= -200.4f  && car.getPosition().z <= -376f &&  car.getPosition().z >= -377.5f )
+        if(car.getPosition().x <= -198.6f &&  car.getPosition().x >= -200.4f  && car.getPosition().z <= -376f &&  car.getPosition().z >= -377.5f && sterni10 == 0 )
         {
 
             sternr10.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
+            sterni10 = 1
         }
     }
 
