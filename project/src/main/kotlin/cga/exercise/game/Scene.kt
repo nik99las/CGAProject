@@ -544,31 +544,31 @@ class Scene(private val window: GameWindow)  {
         }
 
         //Collision mit Rennautos
-        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
+        if (car.getPosition().x <= -36f && car.getPosition().x >= -37f && car.getPosition().z <= -51f && car.getPosition().z >= -55f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
+        if (car.getPosition().x <= -50f && car.getPosition().x >= -52f && car.getPosition().z <= -110f && car.getPosition().z >= -115f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
+        if (car.getPosition().x <= -85.2f && car.getPosition().x >= -85.8f && car.getPosition().z <= -150f && car.getPosition().z >= -151f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
+        if (car.getPosition().x <= -120f && car.getPosition().x >= -121f && car.getPosition().z <= -235f && car.getPosition().z >= -236f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -34f && car.getPosition().x >= -36f && car.getPosition().z <= -38f && car.getPosition().z >= -39f) {
+        if (car.getPosition().x <= -158.4f && car.getPosition().x >= -159f && car.getPosition().z <= -290f && car.getPosition().z >= -294f) {
             println("Du hast verloren")
             exitProcess(0)
 
