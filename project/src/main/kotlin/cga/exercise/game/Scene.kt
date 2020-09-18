@@ -31,6 +31,7 @@ class Scene(private val window: GameWindow)  {
 
     var bodenr :Renderable
     var startbodenr :Renderable
+    var zielbodenr :Renderable
     var sternr1 :Renderable
     var sternr2 :Renderable
     var sternr3 :Renderable
@@ -47,8 +48,10 @@ class Scene(private val window: GameWindow)  {
     var diff :Texture2D
     var emit :Texture2D
     var startemit :Texture2D
+    var zielemit :Texture2D
     var spec : Texture2D
     var startmaterial :Material
+    var zielmaterial :Material
     var starmaterial :Material
     var stardiff :Texture2D
     var staremit :Texture2D
@@ -135,9 +138,12 @@ class Scene(private val window: GameWindow)  {
         startemit = Texture2D.invoke("assets/bus/Texturizer/Start.png",true)
         startemit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
+        zielemit = Texture2D.invoke("assets/bus/Texturizer/Ziel.png",true)
+        zielemit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+
         material = Material(diff,emit,spec,60f, Vector2f(64f,64f))
         startmaterial = Material(diff,startemit,spec,60f, Vector2f(64f,64f))
-
+        zielmaterial = Material(diff,zielemit,spec,60f, Vector2f(64f,64f))
 
         val starres: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/star/stern.obj")
         val objMesh1: OBJLoader.OBJMesh = starres.objects[0].meshes[0]
@@ -154,6 +160,7 @@ class Scene(private val window: GameWindow)  {
 
         val bodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,material)
         val startbodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,startmaterial)
+        val zielbodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,zielmaterial)
 
 
         bodenr = Renderable(mutableListOf(bodenmesh))
@@ -165,6 +172,11 @@ class Scene(private val window: GameWindow)  {
         startbodenr.translateLocal(Vector3f(10.3f,0f,15f))
         startbodenr.rotateLocal(0f,90f,0f)
         startbodenr.scaleLocal(Vector3f(0.5f,0.6f,0.9f))
+
+       zielbodenr = Renderable(mutableListOf(zielbodenmesh))
+        zielbodenr.translateLocal(Vector3f(-200.2f,0f,-405f))
+        zielbodenr.rotateLocal(0f,90f,0f)
+        zielbodenr.scaleLocal(Vector3f(0.5f,0.6f,0.9f))
 
         val sternmesh  = Mesh(objMesh1.vertexData, objMesh1.indexData, vertexAttributes,starmaterial)
 
@@ -476,6 +488,7 @@ class Scene(private val window: GameWindow)  {
         bodenr.render(spielshader)
 
         startbodenr.render(spielshader)
+        zielbodenr.render(spielshader)
 
         //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0wwwwwwwwwwwf))
         spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
@@ -590,26 +603,23 @@ class Scene(private val window: GameWindow)  {
         }
 
         // Linke Spur Ende
-        if (car.getPosition().x <= -204.8f && car.getPosition().x >= -210f) {
+        if (car.getPosition().x <= -210.7f && car.getPosition().x >= -212.3f) {
             println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
             exitProcess(0)
-
-
         }
 
         // Mitlere Spur Ende
-          if (car.getPosition().x <= -197.3f && car.getPosition().x >= -198.4f && car.getPosition().z <= -390.2f && car.getPosition().z >= -391.5) {
+         if (car.getPosition().x <= -204.3f && car.getPosition().x >= -205.9f && car.getPosition().z <= -405.1f && car.getPosition().z >= -405.9) {
               println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
              exitProcess(0)
-
-          }
+         }
 
         //Rechte Spur Ende
-        if (car.getPosition().x <= -191.5f && car.getPosition().x >= -192f && car.getPosition().z <= -394.2f && car.getPosition().z >= -395.2) {
-            println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
+        if (car.getPosition().x <= -197.8f && car.getPosition().x >= -199.7f && car.getPosition().z <= -408.2f && car.getPosition().z >= -409.2) {
+           println("Du hast gewonnen und $gesammelteSterne/10 Sterne gesammelt")
            exitProcess(0)
              }
-        //
+
     if (car.getPosition().x <= -11.1f && car.getPosition().x >= -11.92f && car.getPosition().z <= -18.0f && car.getPosition().z >= -19.8f && altePosition == 0 ) {
 
         sternr1.translateLocal(Vector3f(10000f, 10000f, 10000f))
