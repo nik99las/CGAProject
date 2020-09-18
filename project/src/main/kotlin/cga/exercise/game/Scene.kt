@@ -106,7 +106,7 @@ class Scene(private val window: GameWindow)  {
     var sterni8 :Int = 0
     var sterni9 :Int = 0
     var sterni10 :Int = 0
-
+    var flugzeug :Renderable
 
     //scene setup
     init {
@@ -233,7 +233,10 @@ class Scene(private val window: GameWindow)  {
         sternr10.scaleLocal(Vector3f(0.2f,0.2f,0.2f))
         sternr10.rotateLocal(0f,-160f,-270f)
 
-
+        flugzeug = ModelLoader.loadModel("assets/Beriev_A50/BerievA50.obj",Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
+        flugzeug.scaleLocal(Vector3f(0.1f,0.1f,0.1f))
+        flugzeug.translateLocal(Vector3f(20f,300f, 0f))
+        flugzeug.rotateLocal(0f,-45f,0f)
 
         //Zweites Auto Gegner
         Rennauto = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender2/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-90f), 0f) ?: throw IllegalArgumentException("Could not load the model")
@@ -489,6 +492,9 @@ class Scene(private val window: GameWindow)  {
 
         startbodenr.render(spielshader)
         zielbodenr.render(spielshader)
+
+        flugzeug.render(spielshader)
+        flugzeug.translateLocal(Vector3f(-450f * dt, 0.0f, 0f * dt))
 
         //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0wwwwwwwwwwwf))
         spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
