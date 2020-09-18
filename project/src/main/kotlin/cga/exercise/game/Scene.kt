@@ -30,6 +30,7 @@ class Scene(private val window: GameWindow)  {
     private val staticShader: ShaderProgram
 
     var bodenr :Renderable
+    var startbodenr :Renderable
     var sternr1 :Renderable
     var sternr2 :Renderable
     var sternr3 :Renderable
@@ -45,7 +46,9 @@ class Scene(private val window: GameWindow)  {
     var material :Material
     var diff :Texture2D
     var emit :Texture2D
+    var startemit :Texture2D
     var spec : Texture2D
+    var startmaterial :Material
     var starmaterial :Material
     var stardiff :Texture2D
     var staremit :Texture2D
@@ -129,7 +132,11 @@ class Scene(private val window: GameWindow)  {
         spec = Texture2D.invoke("assets/textures/ground_spec.png",true)
         spec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
+        startemit = Texture2D.invoke("assets/bus/Texturizer/Start.png",true)
+        startemit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
+
         material = Material(diff,emit,spec,60f, Vector2f(64f,64f))
+        startmaterial = Material(diff,startemit,spec,60f, Vector2f(64f,64f))
 
 
         val starres: OBJLoader.OBJResult = OBJLoader.loadOBJ("assets/star/stern.obj")
@@ -146,6 +153,7 @@ class Scene(private val window: GameWindow)  {
 
 
         val bodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,material)
+        val startbodenmesh  = Mesh(objMesh2.vertexData, objMesh2.indexData, vertexAttributes,startmaterial)
 
 
         bodenr = Renderable(mutableListOf(bodenmesh))
@@ -153,6 +161,10 @@ class Scene(private val window: GameWindow)  {
         bodenr.rotateLocal(0f,90f,0f)
         bodenr.scaleLocal(Vector3f(10f,0.6f,0.9f))
 
+        startbodenr = Renderable(mutableListOf(startbodenmesh))
+        startbodenr.translateLocal(Vector3f(10.3f,0f,15f))
+        startbodenr.rotateLocal(0f,90f,0f)
+        startbodenr.scaleLocal(Vector3f(0.5f,0.6f,0.9f))
 
         val sternmesh  = Mesh(objMesh1.vertexData, objMesh1.indexData, vertexAttributes,starmaterial)
 
@@ -239,7 +251,7 @@ class Scene(private val window: GameWindow)  {
 
         car = ModelLoader.loadModel("assets/Low Poly Cars (Free)_blender/LowPolyCars.obj", Math.toRadians(0f), Math.toRadians(-63f), 0f) ?: throw IllegalArgumentException("Could not load the model")
         car.scaleLocal(Vector3f(1.5f,1.5f,1.5f))
-        car.translateLocal(Vector3f(-0.5f,0.2f,2.5f))
+        car.translateLocal(Vector3f(6f,0.2f,15f))
 
 
         //Haus1--------links//
@@ -458,12 +470,14 @@ class Scene(private val window: GameWindow)  {
 
 
         spotligt.bind(spielshader,"bike", camera.getCalculateViewMatrix())
-        spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
+        spielshader.setUniform("shadingcolor",Vector3f(1f,1f,1f))
 
 
         bodenr.render(spielshader)
 
-        //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0f))
+        startbodenr.render(spielshader)
+
+        //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0wwwwwwwwwwwf))
         spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
         sternr1.render(spielshader)
