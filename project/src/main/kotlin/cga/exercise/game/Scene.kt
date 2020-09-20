@@ -496,7 +496,7 @@ class Scene(private val window: GameWindow)  {
         flugzeug.render(spielshader)
         flugzeug.translateLocal(Vector3f(-450f * dt, 0.0f, 0f * dt))
 
-        //staticShader.setUniform("shadingcolor",Vector3f(1.0f,1.0f,0.0wwwwwwwwwwwf))
+
         spielshader.setUniform("shadingcolor",Vector3f(1f,1f,0f))
 
         sternr1.render(spielshader)
@@ -528,7 +528,6 @@ class Scene(private val window: GameWindow)  {
         haus15.render(spielshader)
         haus16.render(spielshader)
         haus17.render(spielshader)
-        //staticShader.setUniform("shadingcolor",Vector3f(sin(1f*t),sin(1f*t+(2f/3f*Math.PI.toFloat())),sin(1f*t+(4f/3f*Math.PI.toFloat()))))
         car.render(spielshader)
         Rennauto.render(spielshader)
         Rennauto2.render(spielshader)
@@ -536,12 +535,12 @@ class Scene(private val window: GameWindow)  {
         Rennauto4.render(spielshader)
         Rennauto5.render(spielshader)
 
-        /*if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
+        if(window.getKeyState(GLFW_KEY_E)){  // Um Bewegung anzuhalten E drücken
          car.translateLocal(Vector3f(0*dt,0.0f,0f*dt))
        }
-        else if(window.getKeyState(GLFW_KEY_ENTER)) {
-            car.translateLocal(Vector3f(-7.5f * dt, 0.0f, -15f * dt))
-        }*/
+        else  {
+            car.translateLocal(Vector3f(-15f * dt, 0.0f, -30f * dt))
+        }
 
 
 
@@ -555,7 +554,7 @@ class Scene(private val window: GameWindow)  {
 
 
 
-        if (window.getKeyState(GLFW_KEY_W)) {
+      /*  if (window.getKeyState(GLFW_KEY_W)) {
 
             car.translateLocal(Vector3f(-15f * dt, 0.0f, -30f * dt))
         }
@@ -563,6 +562,8 @@ class Scene(private val window: GameWindow)  {
             car.translateLocal(Vector3f(7.5f * dt, 0f, 15.0f * dt))
 
         }
+
+       */
         if (window.getKeyState(GLFW_KEY_A)) {
             //car.translateLocal(Vector3f(-1.0f,0.0f,30.0f))
             car.translateLocal(Vector3f(-10.0f * dt, 0.0f, 5.0f * dt))
