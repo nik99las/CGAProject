@@ -545,8 +545,8 @@ class Scene(private val window: GameWindow)  {
 
 
 
-        println(car.getPosition())
-        println(gesammelteSterne)
+       // println(car.getPosition())
+       // println(gesammelteSterne)
 
     }
 
