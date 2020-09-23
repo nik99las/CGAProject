@@ -590,19 +590,19 @@ class Scene(private val window: GameWindow)  {
 
 
         }
-        if (car.getPosition().x <= -85.2f && car.getPosition().x >= -85.8f && car.getPosition().z <= -150f && car.getPosition().z >= -151f) {
+        if (car.getPosition().x <= -85.2f && car.getPosition().x >= -85.8f && car.getPosition().z <= -150f && car.getPosition().z >= -153f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -120f && car.getPosition().x >= -121f && car.getPosition().z <= -235f && car.getPosition().z >= -236f) {
+        if (car.getPosition().x <= -120f && car.getPosition().x >= -122f && car.getPosition().z <= -235f && car.getPosition().z >= -238f) {
             println("Du hast verloren")
             exitProcess(0)
 
 
         }
-        if (car.getPosition().x <= -158.4f && car.getPosition().x >= -159f && car.getPosition().z <= -290f && car.getPosition().z >= -294f) {
+        if (car.getPosition().x <= -158.4f && car.getPosition().x >= -161f && car.getPosition().z <= -290f && car.getPosition().z >= -294f) {
             println("Du hast verloren")
             exitProcess(0)
 
