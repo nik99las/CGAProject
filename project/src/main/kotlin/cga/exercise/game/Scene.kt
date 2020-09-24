@@ -655,7 +655,7 @@ class Scene(private val window: GameWindow)  {
 
             sternr4.translateLocal(Vector3f(10000f,10000f,10000f))
             gesammelteSterne += 1
-            sterni4 == 1
+            sterni4 = 1
         }
 
         if(car.getPosition().x <= -79.0f &&  car.getPosition().x >= -80.2f  && car.getPosition().z <= -170.6f &&  car.getPosition().z >= -171.9f && sterni5 == 0)
